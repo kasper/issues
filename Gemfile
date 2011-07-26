@@ -1,5 +1,8 @@
-# A sample Gemfile
 source "http://rubygems.org"
 
-# gem "rails"
 gem 'sinatra'
+gem 'data_mapper'
+
+group :development do
+	gem 'dm-sqlite-adapter'
+end
