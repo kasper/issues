@@ -14,4 +14,8 @@ class AppController < Sinatra::Base
 		erb :index
 	end
 
+	error 404 do
+		erb :'404'
+	end
+
 end
