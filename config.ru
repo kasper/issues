@@ -1,3 +1,3 @@
-require './app_controller'
+require 'app_controller'
 
-run Sinatra::Application
+run AppController
