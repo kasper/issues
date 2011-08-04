@@ -7,5 +7,3 @@ class Visitor
 	property :ip, String, :required => true
 
 end
-
-Visitor.auto_migrate! unless Visitor.storage_exists?

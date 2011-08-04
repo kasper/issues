@@ -12,5 +12,3 @@ class User
 	property :description, Text
 
 end
-
-User.auto_migrate! unless User.storage_exists?
