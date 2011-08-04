@@ -2,16 +2,25 @@ require 'rubygems'
 require 'sinatra/base'
 require 'erb'
 
+require 'init'
+
+require 'models/user'
+
 class AppController < Sinatra::Base
 
 	get '/' do
-		@name = "world";
+		@users = User.all
 		erb :index
 	end
 
-	get '/:name' do
-		@name = params[:name].capitalize
-		erb :index
+	get '/user/:name' do
+		@user = User.get(params[:name])
+		pass unless @user
+		erb :user
+	end
+	
+	get '/user/*' do
+		"User not found."
 	end
 
 	error 404 do
