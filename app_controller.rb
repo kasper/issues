@@ -5,22 +5,15 @@ require 'erb'
 require 'init'
 
 require 'models/user'
+require 'controllers/user_controller'
 
 class AppController < Sinatra::Base
+
+	use UserController
 
 	get '/' do
 		@users = User.all
 		erb :index
-	end
-
-	get '/user/:name' do
-		@user = User.get(params[:name])
-		pass unless @user
-		erb :user
-	end
-	
-	get '/user/*' do
-		"User not found."
 	end
 
 	error 404 do
