@@ -11,7 +11,7 @@ class UserController < Sinatra::Base
     email = params[:email]
     password = params[:password]
 		
-    new_user = User.register(username, email, password)
+    new_user = User.register(username.downcase, email, password)
 		
     # Was the user saved?
     if new_user.saved?
@@ -27,7 +27,7 @@ class UserController < Sinatra::Base
   end
 	
   post '/login' do
-    username = params[:username]
+    username = params[:username].downcase
     password = params[:password]
     
     # Did the authorisation succeed?
@@ -44,7 +44,7 @@ class UserController < Sinatra::Base
   end
 
   get '/user/:name' do
-    @user = User.first(:username => params[:name])
+    @user = User.first(:username => params[:name].downcase)
     pass unless @user
     erb :user
   end
