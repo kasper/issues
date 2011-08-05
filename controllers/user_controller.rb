@@ -11,7 +11,7 @@ class UserController < Sinatra::Base
 		
 		new_user = User.register(username, email, password)
 		
-		# Was user saved?
+		# Was the user saved?
 		if new_user.saved?
 			redirect to('/user/' + username)
 		else
