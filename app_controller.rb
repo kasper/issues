@@ -10,6 +10,7 @@ require 'controllers/user_controller'
 
 class AppController < Sinatra::Base
 	
+	set :erb, :trim => '-'
   set :sessions => true
 	
   register Auth

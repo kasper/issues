@@ -1,5 +1,6 @@
 class UserController < Sinatra::Base
 
+  set :erb, :trim => '-'
   register Auth
 
   get '/signup' do
