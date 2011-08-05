@@ -2,7 +2,8 @@ class User
 
 	include DataMapper::Resource
 	
-	property :username, String, :key => true
+	property :id, Serial
+	property :username, String, :unique => true
 	property :email, String, :required => true
 	property :password, String, :required => true
 	property :registered_on, DateTime, :required => true
@@ -18,6 +19,7 @@ class User
 			:password => password,
 			:registered_on => Time.now
 		)
+		return new_user
 	end
 
 end

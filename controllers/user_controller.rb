@@ -9,12 +9,19 @@ class UserController < Sinatra::Base
 		email = params[:email]
 		password = params[:password]
 		
-		User.register(username, email, password)	
-		redirect to('/user/' + username)
+		new_user = User.register(username, email, password)
+		
+		# Was user saved?
+		if new_user.saved?
+			redirect to('/user/' + username)
+		else
+			@errors = new_user.errors
+			erb :error
+		end
 	end
 
 	get '/user/:name' do
-		@user = User.get(params[:name])
+		@user = User.first(:username => params[:name])
 		pass unless @user
 		erb :user
 	end
