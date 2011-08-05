@@ -10,22 +10,22 @@ require 'controllers/user_controller'
 
 class AppController < Sinatra::Base
 	
-	set :sessions => true
+  set :sessions => true
 	
-	register Auth
-	use UserController
+  register Auth
+  use UserController
 
-	get '/' do
-		@users = User.all
-		erb :index
-	end
+  get '/' do
+    @users = User.all
+    erb :index
+  end
 	
-	get '/secret', :auth => :user do
-			"Secret" 
-	end
+  get '/secret', :auth => :user do
+    "Secret" 
+  end
 	
-	error 404 do
-		erb :'404'
-	end
+  error 404 do
+    erb :'404'
+  end
 
 end
