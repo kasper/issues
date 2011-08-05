@@ -16,7 +16,7 @@ class UserController < Sinatra::Base
 			redirect to('/user/' + username)
 		else
 			@errors = new_user.errors
-			erb :error
+			erb :signup
 		end
 	end
 
