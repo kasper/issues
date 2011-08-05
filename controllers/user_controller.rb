@@ -1,18 +1,16 @@
 class UserController < Sinatra::Base
 
-	get '/join' do
-		erb :join
+	get '/signup' do
+		erb :signup
 	end
 	
-	post '/join' do
-		new_user = User.create(
-			:username => params[:username],
-			:email => params[:email],
-			:password => params[:password],
-			:registered_on => Time.now
-		)
+	post '/signup' do
+		username = params[:username]
+		email = params[:email]
+		password = params[:password]
 		
-		redirect to('/user/' + params[:username])
+		User.register(username, email, password)	
+		redirect to('/user/' + username)
 	end
 
 	get '/user/:name' do

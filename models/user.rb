@@ -10,5 +10,14 @@ class User
 	property :location, String
 	property :www, String
 	property :description, Text
+	
+	def self.register(username, email, password)
+		new_user = User.create(
+			:username => username,
+			:email => email,
+			:password => password,
+			:registered_on => Time.now
+		)
+	end
 
 end
