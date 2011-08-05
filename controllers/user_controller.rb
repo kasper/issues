@@ -15,7 +15,7 @@ class UserController < Sinatra::Base
 		
     # Was the user saved?
     if new_user.saved?
-      redirect to('/user/' + username)
+      redirect '/user/' + username
     else
       @errors = new_user.errors
       erb :signup
@@ -29,17 +29,18 @@ class UserController < Sinatra::Base
   post '/login' do
     username = params[:username]
     password = params[:password]
-    user = User.first(:username => params[:username])
-		
-    # Authorize if password is correct
-    if (user.password == password)
-      authorize(user.id)
-      redirect to('/secret')
-    end
+    
+    # Did the authorisation succeed?
+		if authorise(username, password)
+		  redirect '/secret'
+		else
+		  "Wrong username or password."
+		end
   end
 	
   get '/logout' do
     logout
+    redirect '/'
   end
 
   get '/user/:name' do

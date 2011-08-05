@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class User
 
   include DataMapper::Resource
@@ -16,7 +18,7 @@ class User
     new_user = User.create(
       :username => username,
       :email => email,
-      :password => password,
+      :password => Digest::SHA1.hexdigest(password),
       :registered_on => Time.now
     )
     return new_user

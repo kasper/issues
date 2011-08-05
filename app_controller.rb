@@ -21,7 +21,7 @@ class AppController < Sinatra::Base
   end
 	
   get '/secret', :auth => :user do
-    "Secret" 
+    "Logged in as " + authorised_user.username 
   end
 	
   error 404 do
