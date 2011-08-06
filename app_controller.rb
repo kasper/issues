@@ -5,8 +5,8 @@ require 'erb'
 require 'init'
 require 'auth'
 
-require 'models/user'
-require 'controllers/user_controller'
+require 'models/all_models'
+require 'controllers/all_controllers'
 
 class AppController < Sinatra::Base
 	
@@ -15,14 +15,12 @@ class AppController < Sinatra::Base
 	
   register Auth
   use UserController
+  use QuestionController
 
   get '/' do
     @users = User.all
+    @questions = Question.all
     erb :index
-  end
-	
-  get '/secret', :auth => :user do
-    "Logged in as " + authorised_user.username 
   end
 	
   error 404 do

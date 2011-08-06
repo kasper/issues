@@ -13,6 +13,9 @@ class User
   property :location, String
   property :www, String
   property :description, Text
+  
+  has n, :questions
+  has n, :answers
 	
   def self.register(username, email, password)
     new_user = User.create(

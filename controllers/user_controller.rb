@@ -3,11 +3,11 @@ class UserController < Sinatra::Base
   set :erb, :trim => '-'
   register Auth
 
-  get '/signup' do
-    erb :signup
+  get '/register' do
+    erb :register
   end
 	
-  post '/signup' do
+  post '/register' do
     username = params[:username]
     email = params[:email]
     password = params[:password]
@@ -19,7 +19,7 @@ class UserController < Sinatra::Base
       redirect '/user/' + username
     else
       @errors = new_user.errors
-      erb :signup
+      erb :register
     end
   end
 	
@@ -33,9 +33,10 @@ class UserController < Sinatra::Base
     
     # Did the authorisation succeed?
     if authorise!(username, password)
-      redirect '/secret'
+      redirect '/'
     else
-      "Wrong username or password."
+      @error = "Wrong username or password."
+      erb :login
     end
   end
 	
