@@ -25,8 +25,8 @@ module Auth
     
       user = User.first(:username => username)
       
-      # Authorise if password is correct
-      if user.password == Digest::SHA1.hexdigest(password)
+      # Authorise if user exists and password is correct
+      if user && user.password == Digest::SHA1.hexdigest(password)
         session[:user_id] = user.id
         return true
       end

@@ -17,6 +17,6 @@
 
 <ul>
   <% @questions.each do |question| -%>
-  <li><%= question.title %> asked by <%= question.user.username %></li>
+  <li><a href="/view/<%= question.id %>"><%= question.title %></a> asked by <%= question.user.username %></li>
   <% end -%>
 </ul>

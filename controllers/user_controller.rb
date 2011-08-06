@@ -9,15 +9,16 @@ class UserController < Sinatra::Base
 	
   post '/register' do
   
-    username = params[:username]
+    username = params[:username].downcase
     email = params[:email]
     password = params[:password]
 		
-    new_user = User.register(username.downcase, email, password)
+    new_user = User.register(username, email, password)
 		
     # Was the user saved?
     if new_user.saved?
-      redirect '/user/' + username
+      authorise!(username, password)
+      redirect '/'
     else
       @errors = new_user.errors
       erb :register
