@@ -4,7 +4,7 @@ class Answer
 
   property :id, Serial
   property :message, Text, :required => true
-  property :time_answered, DateTime, :required => true
+  property :answered_on, DateTime, :required => true
   
   belongs_to :user
   belongs_to :question 

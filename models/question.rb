@@ -5,7 +5,7 @@ class Question
   property :id, Serial
   property :title, String, :required => true
   property :message, Text, :required => true
-  property :time_asked, DateTime, :required => true
+  property :asked_on, DateTime, :required => true
   property :private, Boolean, :default => false  
   
   belongs_to :user
