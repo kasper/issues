@@ -19,8 +19,8 @@ module Auth
       return is_user?
     end
       	
-    def authorise!(user, password)
-      user = User.first(:username => params[:username])
+    def authorise!(username, password)
+      user = User.first(:username => username)
       
       # Authorise if password is correct
       if user.password == Digest::SHA1.hexdigest(password)
