@@ -12,18 +12,14 @@ module Auth
   module Helpers
 	
     def is_user?
-      return session[:user_id] != nil
+      return session[:user_id]
     end
       	
     def authorised?
       return is_user?
     end
       	
-    def authorise!
-      redirect '/login' unless authorised?
-    end
-      	
-    def authorise(user, password)
+    def authorise!(user, password)
       user = User.first(:username => params[:username])
       
       # Authorise if password is correct

@@ -32,7 +32,7 @@ class UserController < Sinatra::Base
     password = params[:password]
     
     # Did the authorisation succeed?
-    if authorise(username, password)
+    if authorise!(username, password)
       redirect '/secret'
     else
       "Wrong username or password."
