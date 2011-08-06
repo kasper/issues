@@ -4,10 +4,11 @@ class UserController < Sinatra::Base
   register Auth
 
   get '/register' do
-    erb :register
+    erb :register 
   end
 	
   post '/register' do
+  
     username = params[:username]
     email = params[:email]
     password = params[:password]
@@ -21,6 +22,7 @@ class UserController < Sinatra::Base
       @errors = new_user.errors
       erb :register
     end
+    
   end
 	
   get '/login' do
@@ -28,6 +30,7 @@ class UserController < Sinatra::Base
   end
 	
   post '/login' do
+  
     username = params[:username].downcase
     password = params[:password]
     
@@ -38,17 +41,22 @@ class UserController < Sinatra::Base
       @error = "Wrong username or password."
       erb :login
     end
+    
   end
 	
   get '/logout' do
+  
     logout
-    redirect '/'
+    redirect '/' 
+     
   end
 
   get '/user/:name' do
+  
     @user = User.first(:username => params[:name].downcase)
     pass unless @user
-    erb :user
+    erb :user 
+    
   end
 	
   get '/user/*' do

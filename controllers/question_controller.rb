@@ -7,6 +7,7 @@ class QuestionController < Sinatra::Base
   end
   
   post '/ask', :auth => :user do
+  
     user = authorised_user
     title = params[:title]
     message = params[:message]
@@ -14,6 +15,7 @@ class QuestionController < Sinatra::Base
     new_question = Question.new_question(user, title, message)
     
     redirect '/'
+    
   end
   
 end

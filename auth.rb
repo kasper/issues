@@ -4,9 +4,11 @@ module Auth
 
   # Auth role
   def auth (type)
+  
     condition do
       redirect '/login' unless send("is_#{type}?")
     end
+    
   end
 
   module Helpers
@@ -20,6 +22,7 @@ module Auth
     end
       	
     def authorise!(username, password)
+    
       user = User.first(:username => username)
       
       # Authorise if password is correct
@@ -29,6 +32,7 @@ module Auth
       end
       
       return false
+      
     end
     
     def authorised_user

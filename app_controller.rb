@@ -18,9 +18,11 @@ class AppController < Sinatra::Base
   use QuestionController
 
   get '/' do
+  
     @users = User.all
     @questions = Question.all
     erb :index
+    
   end
 	
   error 404 do
