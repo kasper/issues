@@ -9,7 +9,16 @@ class Answer
   belongs_to :user
   belongs_to :question 
   
-  def self.new_answer
+  def self.new_answer(belonging_to_user, belonging_to_question, message)
+  
+    new_answer = Answer.create(
+      :user => belonging_to_user,
+      :question => belonging_to_question,
+      :message => message,
+      :time_answered => Time.now
+    )
+    
+    return new_answer
   
   end
 
