@@ -5,7 +5,7 @@ class User
   include DataMapper::Resource
 	
   property :id, Serial
-  property :username, String, :unique => true
+  property :username, String, :required => true, :unique => true
   property :email, String, :required => true
   property :password, String, :required => true
   property :registered_on, DateTime, :required => true
@@ -18,12 +18,18 @@ class User
   has n, :answers
 	
   def self.register(username, email, password)
+  
+    if !password.empty?
+      password = Digest::SHA1.hexdigest(password)
+    end
+  
     new_user = User.create(
       :username => username,
       :email => email,
-      :password => Digest::SHA1.hexdigest(password),
+      :password => password,
       :registered_on => Time.now
     )
+    
     return new_user
   end
 

@@ -12,12 +12,14 @@ class Question
   has n, :answers
   
   def self.new_question(user, title, message)
+  
     new_question = Question.create(
       :user => user,
       :title => title,
       :message => message,
       :time_asked => Time.now
     )
+    
     return new_question
   end
 
