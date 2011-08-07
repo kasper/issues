@@ -27,7 +27,7 @@ class User
       :username => username,
       :email => email,
       :password => password,
-      :registered_on => Time.now
+      :registered_on => DateTime.now
     )
     
     return new_user

@@ -17,7 +17,7 @@ class Question
       :user => belonging_to_user,
       :title => title,
       :message => message,
-      :asked_on => Time.now
+      :asked_on => DateTime.now
     )
     
     return new_question
@@ -30,7 +30,7 @@ class Question
       :user => belonging_to_user,
       :title => title,
       :message => message,
-      :asked_on => Time.now,
+      :asked_on => DateTime.now,
       :private => true
     )
     

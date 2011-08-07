@@ -15,7 +15,7 @@ class Answer
       :user => belonging_to_user,
       :question => belonging_to_question,
       :message => message,
-      :answered_on => Time.now
+      :answered_on => DateTime.now
     )
     
     return new_answer
