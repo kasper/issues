@@ -14,8 +14,8 @@ class User
   property :www, String
   property :description, Text
   
-  has n, :questions
-  has n, :answers
+  has n, :issues
+  has n, :responses
 	
   def self.register(username, email, password)
   

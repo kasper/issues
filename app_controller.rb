@@ -17,8 +17,6 @@ class AppController < Sinatra::Base
   set :sessions => true
 	
   register Auth
-  use UserController
-  use QuestionController
 
   get '/' do
    
