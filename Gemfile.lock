@@ -56,6 +56,7 @@ GEM
     fastercsv (1.5.4)
     json (1.4.6)
     rack (1.3.1)
+    require_all (1.2.0)
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -70,4 +71,5 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   dm-sqlite-adapter
+  require_all
   sinatra

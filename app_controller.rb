@@ -1,16 +1,19 @@
 require 'rubygems'
+require 'bundler'
+Bundler.require(:default, :development)
+
 require 'sinatra/base'
 require 'erb'
 
 require 'init'
 require 'auth'
 
-require 'models/all_models'
-require 'controllers/all_controllers'
+require_all 'models'
+require_all 'controllers'
 
 class AppController < Sinatra::Base
 	
-  set :erb, :trim => '-'
+	set :erb, :trim => '-'
   set :sessions => true
 	
   register Auth
@@ -18,11 +21,7 @@ class AppController < Sinatra::Base
   use QuestionController
 
   get '/' do
-  
-    @users = User.all
-    @questions = Question.all
-    erb :index
-    
+   
   end
 	
   error 404 do

@@ -1,9 +1,10 @@
 require 'rubygems'
-require 'data_mapper'
+require 'bundler'
+Bundler.require(:default, :development)
 
 require 'init'
 
-require 'models/all_models'
+require_all 'models'
 
 task :create_database do
 	DataMapper.auto_migrate!
