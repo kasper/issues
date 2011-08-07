@@ -7,5 +7,5 @@ require 'init'
 require_all 'models'
 
 task :create_database do
-	DataMapper.auto_migrate!
+  DataMapper.auto_migrate!
 end
