@@ -6,7 +6,8 @@ module Auth
   def auth (type)
   
     condition do
-      redirect to('/signin') unless send("is_#{type}?")
+      return_to = request.path
+      redirect to('/signin?return_to=' + return_to) unless send("is_#{type}?")
     end
     
   end

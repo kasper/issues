@@ -3,3 +3,9 @@
     <li><%= user.username %></li>
   <% end -%>
   </ul>
+  
+  <ul>
+  <% @issues.each do |issue| -%>
+    <li><a href="/issue/<%= issue.id %>"><%= issue.title %></a> opened by <%= issue.user.username %> <%= time_ago_in_words(Time.parse(issue.opened_on.to_s)) %> ago</li>
+  <% end -%>
+  </ul>

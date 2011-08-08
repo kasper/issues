@@ -18,6 +18,7 @@ class AppController < Sinatra::Base
 	
   register Auth
   use UserController
+  use IssueController
   
   helpers do
     include ActionView::Helpers::DateHelper
@@ -25,6 +26,7 @@ class AppController < Sinatra::Base
 
   get '/' do
     @users = User.all
+    @issues = Issue.all.reverse
     erb :index
   end
 	

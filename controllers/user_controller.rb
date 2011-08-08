@@ -14,7 +14,7 @@ class UserController < Sinatra::Base
     username = params[:username].downcase
     password = params[:password]
     
-    # Did authorisation succeed?
+    # Did the authorisation succeed?
     if authorise!(username, password)
       redirect to(return_path)
     else
