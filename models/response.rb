@@ -17,8 +17,6 @@ class Response
       :message => message,
       :responded_on => DateTime.now
     )
-    
-    return new_response
   
   end
 

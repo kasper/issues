@@ -30,8 +30,6 @@ class User
       :registered_on => DateTime.now
     )
     
-    return new_user
-    
   end
 
 end

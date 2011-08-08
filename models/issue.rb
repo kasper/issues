@@ -20,8 +20,6 @@ class Issue
       :opened_on => DateTime.now
     )
     
-    return new_issue
-    
   end
   
   def self.new_private_issue(belonging_to_user, title, message)
@@ -33,8 +31,6 @@ class Issue
       :opened_on => DateTime.now,
       :private => true
     )
-    
-    return new_private_issue
   
   end
 
