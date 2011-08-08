@@ -1,0 +1,9 @@
+  <% if @error -%>
+    <div><%= @error %></div>
+  <% end -%>
+  
+  <form action="/signin?return_to=<%= params[:return_to] %>" method="post">
+    <div>Username: <input type="text" name="username"></div>
+    <div>Password: <input type="password" name="password"></div>
+    <div><input type="submit" value="Sign in"></div>
+  </form>

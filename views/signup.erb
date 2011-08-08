@@ -1,0 +1,14 @@
+  <% if @errors -%>
+  <ul>
+    <% @errors.each do |error| -%>
+    <li><%= error %></li>
+    <% end -%>
+  </ul>
+  <% end -%>
+  
+  <form action="/signup" method="post">
+    <div>Username: <input type="text" name="username"></div>
+    <div>Email: <input type="text" name="email"></div>
+    <div>Password: <input type="password" name="password"></div>
+    <div><input type="submit" value="Sign in"></div>
+  </form>

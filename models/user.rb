@@ -17,7 +17,7 @@ class User
   has n, :issues
   has n, :responses
 	
-  def self.register(username, email, password)
+  def self.signup(username, email, password)
   
     if !password.empty?
       password = Digest::SHA1.hexdigest(password)

@@ -6,7 +6,7 @@ module Auth
   def auth (type)
   
     condition do
-      redirect '/login' unless send("is_#{type}?")
+      redirect to('/signin') unless send("is_#{type}?")
     end
     
   end
@@ -14,11 +14,11 @@ module Auth
   module Helpers
 	
     def is_user?
-      return session[:user_id]
+      session[:user_id]
     end
       	
     def authorised?
-      return is_user?
+      is_user?
     end
       	
     def authorise!(username, password)
@@ -36,7 +36,7 @@ module Auth
     end
     
     def authorised_user
-      return User.get(session[:user_id])
+      User.get(session[:user_id])
     end
       	
     def logout
