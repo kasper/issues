@@ -2,14 +2,14 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
-require 'sinatra/base'
 require 'erb'
+require 'action_view'
 
 require 'init'
 require 'auth'
 
 require_all 'models'
-require_all 'controllers'
+#require_all 'controllers'
 
 class AppController < Sinatra::Base
 	
@@ -17,9 +17,14 @@ class AppController < Sinatra::Base
   set :sessions => true
 	
   register Auth
+  
+  helpers do
+    include ActionView::Helpers::DateHelper
+  end
 
   get '/' do
-   
+  
+  
   end
 	
   error 404 do

@@ -1,8 +1,9 @@
 source "http://rubygems.org"
 
-gem 'sinatra'
+gem 'sinatra', :require => 'sinatra/base'
 gem 'data_mapper'
 gem 'require_all'
+gem 'actionpack'
 
 group :development do
   gem 'dm-sqlite-adapter'
