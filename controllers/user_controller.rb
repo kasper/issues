@@ -1,8 +1,4 @@
-class UserController < Sinatra::Base
-  
-  set :erb, :trim => '-'
-  
-  register Auth
+class UserController < Base
   
   get '/signin' do
     erb :signin

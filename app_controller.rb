@@ -1,22 +1,10 @@
-require 'rubygems'
-require 'bundler/setup'
-Bundler.require(:default)
-
-require 'action_view'
-require 'erb'
-
-require 'init'
-require 'auth'
+require 'base'
 
 require_all 'models'
 require_all 'controllers'
 
-class AppController < Sinatra::Base
-	
-  set :erb, :trim => '-'
-  set :sessions => true
-	
-  register Auth
+class AppController < Base
+
   use UserController
   use IssueController
   
@@ -25,9 +13,11 @@ class AppController < Sinatra::Base
   end
 
   get '/' do
+  
     @users = User.all
-    @issues = Issue.all.reverse
+    @issues = Issue.all
     erb :index
+    
   end
 	
   error 404 do

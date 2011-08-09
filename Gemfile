@@ -1,8 +1,8 @@
 source "http://rubygems.org"
 
+gem 'require_all'
 gem 'sinatra', :require => 'sinatra/base'
 gem 'data_mapper'
-gem 'require_all'
 gem 'actionpack'
 
 group :development do

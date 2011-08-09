@@ -1,14 +1,10 @@
-class IssueController < Sinatra::Base
-
-  set :erb, :trim => '-'
-
-  register Auth
+class IssueController < Base
   
-  get '/issue/new', :auth => :user do
+  get '/issues/new', :auth => :user do
     erb :new_issue
   end
   
-  post '/issue/new', :auth => :user do
+  post '/issues/new', :auth => :user do
     
     title = params[:title]
     message = params[:message]
@@ -18,14 +14,17 @@ class IssueController < Sinatra::Base
     
   end
   
-  get '/issue/:id' do
+  get '/issues/:id*' do
   
+    puts settings.root
+    puts settings.static
+    puts settings.public
     @issue = Issue.get(params[:id])
     erb :issue
     
   end
-  
-  post '/issue/respond/:id', :auth => :user do
+
+  post '/issues/:id/respond', :auth => :user do
     
     belonging_to_issue = Issue.get(params[:id])
     response = params[:message]
