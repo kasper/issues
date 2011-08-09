@@ -16,9 +16,6 @@ class IssueController < Base
   
   get '/issues/:id*' do
   
-    puts settings.root
-    puts settings.static
-    puts settings.public
     @issue = Issue.get(params[:id])
     erb :issue
     
