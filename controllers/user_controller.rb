@@ -1,6 +1,7 @@
 class UserController < Base
   
   get '/signin' do
+    @return_path = params[:return_to]
     erb :signin
   end
   
@@ -11,10 +12,10 @@ class UserController < Base
     password = params[:password]
     
     # Did the authorisation succeed?
-    if authorise!(username, password)
+    if authorise(username, password)
       redirect to(return_path)
     else
-      @error = "Wrong username or password."
+      # Error handling
       erb :signin
     end
     
@@ -34,10 +35,10 @@ class UserController < Base
     
     # Was the user saved?
     if new_user.saved?
-      authorise!(username, password)
+      authorise(username, password)
       redirect to('/')
     else
-      @errors = new_user.errors
+      # Error handling
       erb :signup
     end
     

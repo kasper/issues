@@ -17,4 +17,10 @@ class Base < Sinatra::Base
   
   register Auth
   
+  helpers do 
+    def timestamp_for_file(file)
+      File.mtime(file).to_i
+    end
+  end
+  
 end
