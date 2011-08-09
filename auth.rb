@@ -22,7 +22,7 @@ module Auth
       is_user?
     end
       	
-    def authorise!(username, password)
+    def authorise(username, password)
     
       user = User.first(:username => username)
       
