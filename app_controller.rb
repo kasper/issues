@@ -7,10 +7,6 @@ class AppController < Base
 
   use UserController
   use IssueController
-  
-  helpers do
-    include ActionView::Helpers::DateHelper
-  end
 
   get '/' do
   

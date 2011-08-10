@@ -2,11 +2,11 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
 
-require 'action_view'
 require 'erb'
 
 require 'init'
 require 'auth'
+require 'app_helper'
 
 class Base < Sinatra::Base
 	
@@ -15,12 +15,12 @@ class Base < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :sessions => true
   
+  register Sinatra::Flash
   register Auth
+  register AppHelper
   
-  helpers do 
-    def timestamp_for_file(file)
-      File.mtime(file).to_i
-    end
+  helpers do
+    include Sinatra::ContentFor2
   end
   
 end

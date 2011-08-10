@@ -1,5 +1,6 @@
-<form action="/issue/new" method="post">
-  <div>Title: <input type="text" name="title"></div>
-  <div><textarea rows="20" cols="50" name="message">Write</textarea></div>
-  <div><input type="submit" value="Submit"></div>
+<form action="/issues/new" method="post">
+  <label>Title</label><br>
+  <input type="text" name="issue_title"><br>
+  <textarea name="issue_content">Write</textarea><br>
+  <button class="large blue" type="submit">Send</button>
 </form>
