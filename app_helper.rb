@@ -6,6 +6,10 @@ module AppHelper
       File.mtime(file).to_i
     end
     
+    def time_ago_in_words(datetime)
+      Time.parse(datetime.to_s).ago_in_words
+    end
+    
   end
   
   def self.registered(app)

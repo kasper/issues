@@ -1,9 +1,0 @@
-<% if @error -%>
-  <div><%= @error %></div>
-<% end -%>
-  
-<form action="/signin?return_to=<%= @return_path %>" method="post">
-  <div>Username: <input type="text" name="username"></div>
-  <div>Password: <input type="password" name="password"></div>
-  <div><input type="submit" value="Sign in"></div>
-</form>

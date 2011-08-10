@@ -1,12 +1,19 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+  font-size: 14px;
 }
 
 ul {
   padding: 0;
   list-style-position: inside;
   list-style-type: none;
+}
+
+label, input, textarea, button {
+  display: block;
+  margin: 10px 0;
 }
 
 #wrapper {
@@ -17,6 +24,7 @@ ul {
 
 #user-nav {
   height: 60px;
+  width: inherit;
 }
 
 #user-nav ul {
@@ -41,4 +49,18 @@ ul {
 
 #content {
   margin: 60px 0;
+  padding: 5px;
+}
+
+#issues li {
+  padding: 5px 0;
+}
+
+#issue_title {
+  width: 600px;
+}
+
+#issue_content {
+  width: 600px;
+  height: 200px;
 }

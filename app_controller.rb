@@ -10,14 +10,13 @@ class AppController < Base
 
   get '/' do
   
-    @users = User.all
-    @issues = Issue.all
-    erb :index
+    @issues = Issue.all(:order => [ :opened_on.desc ])
+    haml :issues
     
   end
 	
   error 404 do
-    erb :'404'
+    haml :'404'
   end
 
 end

@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title= yield_content :page_title
+    %link{:href => "/style.css?#{timestamp_for_file(__FILE__)}", :rel => "stylesheet", :type => "text/css"}
+  %body
+  
+    #wrapper
+    
+      #user-nav
+        %ul
+          - if !authorised?
+            %li= link_to('Sign in' , '/signin')
+            %li= link_to('Sign up' , '/signup')
+          - else
+            %li= authorised_user.username
+            %li= link_to('Logout' , '/logout')
+          
+        
+      #global-nav
+        %ul
+          %li= link_to('Issues' , '/')
+          %li= link_to('New issue' , '/issues/new')
+          - if authorised?
+            %li= link_to('My issues' , '/')
+          %li= link_to('Tags' , '/tags')
+        
+      #content
+        #{yield}

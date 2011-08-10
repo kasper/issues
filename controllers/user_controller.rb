@@ -2,7 +2,7 @@ class UserController < Base
   
   get '/signin' do
     @return_path = params[:return_to]
-    erb :signin
+    haml :signin
   end
   
   post '/signin' do
@@ -16,13 +16,13 @@ class UserController < Base
       redirect to(return_path)
     else
       # Error handling
-      erb :signin
+      haml :signin
     end
     
   end 
   
   get '/signup' do
-    erb :signup
+    haml :signup
   end
   
   post '/signup' do
@@ -39,7 +39,7 @@ class UserController < Base
       redirect to('/')
     else
       # Error handling
-      erb :signup
+      haml :signup
     end
     
   end

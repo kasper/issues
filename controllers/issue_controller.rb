@@ -1,7 +1,7 @@
 class IssueController < Base
   
   get '/issues/new', :auth => :user do
-    erb :new_issue
+    haml :new_issue
   end
   
   post '/issues/new', :auth => :user do
@@ -23,7 +23,7 @@ class IssueController < Base
   
     @issue = Issue.get(params[:id])
     pass unless @issue
-    erb :issue
+    haml :issue
     
   end
   

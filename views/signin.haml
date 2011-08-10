@@ -1,0 +1,6 @@
+%form{:action => "/signin?return_to=#{@return_path}", :method => "post"}
+  %label Username
+  %input{:type => "text", :name => "username"}
+  %label Password
+  %input{:type => "text", :name => "password"}
+  %button{:type => "submit"} Sign in
