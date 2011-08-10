@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/Undev/sinatra-content-for2
+  revision: 73871f0d60f8b535f4777b58fbf9b63c13050ece
+  specs:
+    sinatra-content-for2 (0.3.alpha1)
+      sinatra
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -60,8 +67,6 @@ GEM
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
-    sinatra-content-for2 (0.2.4)
-      sinatra
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     stringex (1.2.2)
@@ -78,6 +83,6 @@ DEPENDENCIES
   dm-sqlite-adapter
   require_all
   sinatra
-  sinatra-content-for2
+  sinatra-content-for2!
   sinatra-flash
   time-ago-in-words

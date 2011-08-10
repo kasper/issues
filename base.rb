@@ -5,8 +5,8 @@ Bundler.require(:default)
 require 'erb'
 
 require 'init'
-require 'auth'
 require 'app_helper'
+require 'auth'
 
 class Base < Sinatra::Base
 	
@@ -15,12 +15,11 @@ class Base < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :sessions => true
   
+  # Gems
   register Sinatra::Flash
-  register Auth
-  register AppHelper
+  helpers Sinatra::ContentFor2
   
-  helpers do
-    include Sinatra::ContentFor2
-  end
+  register AppHelper
+  register Auth
   
 end
