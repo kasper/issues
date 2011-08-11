@@ -3,14 +3,15 @@
 %form{:action => "/issues/new", :method => "post"}
 
   %label Title
-  %input#issue_title{:type => "text", :name => "issue_title"}
+  %input#new-issue-title{:type => "text", :name => "issue_title"}
   
   - if @errors && @errors[:title]
     %p.error= @errors[:title]
-    
-  %textarea#issue_content{:name => "issue_content"} Write
+  
+  %label Write
+  %textarea#new-issue-content{:name => "issue_content"}
   
   - if @errors && @errors[:content]
     %p.error= @errors[:content]
   
-  %button{:type => "submit"} Submit new issue
+  %button.styled-button.small.green{:type => "submit"} Submit new issue

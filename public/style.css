@@ -7,15 +7,34 @@ body {
   font-size: 14px;
 }
 
+a {
+  color: #52a5d4;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #2f627e;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input, textarea, button {
+  display: block;
+  margin: 0 0 15px;
+  font-size: 12px;
+}
+
+button {
+  border: 0;
+}
+
 ul {
   padding: 0;
   list-style-position: inside;
   list-style-type: none;
-}
-
-label, input, textarea, button {
-  display: block;
-  margin: 10px 0;
 }
 
 #wrapper {
@@ -24,9 +43,15 @@ label, input, textarea, button {
   width: 800px; 
 }
 
+#container {
+  margin: 50px 0;
+}
+
+/* Navigation */
+
 #user-nav {
-  height: 54px;
   width: inherit;
+  height: 53px;
 }
 
 #user-nav ul {
@@ -40,36 +65,73 @@ label, input, textarea, button {
   margin-right: 20px;
 }
 
-#global-nav li {
+#main-nav ul {
+  margin: 20px 0;
+}
+
+#main-nav li {
   display: inline;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
-#content {
-  margin: 40px 0;
-  padding: 5px;
+#main-nav a {
+  color: inherit;
 }
 
+/* Button */
+
+.styled-button {
+  padding: 5px 10px 6px;
+  background: #222222 url(/overlay.png) repeat-x;
+  border-radius: 5px;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+/* Button sizes */
+
+.styled-button.small {
+  font-size: 11px;
+}
+
+.styled-button.medium {
+  font-size: 13px;
+}
+
+.styled-button.large {
+  font-size: 14px;
+}
+
+/* Button colors */
+
+.styled-button.light-gray {
+	background-color: #7f7f7f; 
+}
+
+.styled-button.green {
+	background-color: #67b761;
+}
+
+/* Errors */
+
+.error {
+  font-size: 13px;
+  color: #a94545;
+}
 
 /* Issues */
 
 #issues li {
-  padding: 5px 0;
+  padding: 4px 0;
 }
 
-#issue_title {
+#new-issue-title, #new-issue-content, #new-response-content {
   width: 600px;
 }
 
-#issue {
-  margin: 0 0 50px 0;
-}
-
-#issue_content, #response_content {
-  width: 600px;
+#new-issue-content, #new-response-content {
   height: 200px;
-}
-
-.response {
-  margin: 20px 0;
 }

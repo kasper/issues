@@ -1,10 +1,9 @@
 - content_for :title, 'Issues'
 
-#issues
 - if @issues
-  %ul
+  %ul#issues
     - @issues.each do |issue|
       %li
-        %span.title= link_to(issue.title, "/issues/#{issue.id}")
+        %span= link_to(issue.title, "/issues/#{issue.id}")
         %span by #{issue.user.username}
-        %span.ago= time_ago_in_words(issue.opened_on)
+        %span= time_ago_in_words(issue.opened_on)

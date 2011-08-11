@@ -2,13 +2,13 @@
 %html
   %head
     %title= yield_content :title
-    = stylesheet_link_tag "#{timestamped_filename('./public/style.css')}"
+    = stylesheet_link_tag timestamped_filename('./public/style.css')
   %body
   
     #wrapper
-    
+  
       #user-nav
-        %ul
+        %ul.medium
           - if !authorised?
             %li= link_to('Sign in' , '/signin')
             %li= link_to('Sign up' , '/signup')
@@ -16,12 +16,12 @@
             %li= authorised_user.username
             %li= link_to('Logout' , '/logout') 
         
-      #global-nav
+      #main-nav
         %ul
-          %li= link_to('Issues' , '/')
-          %li= link_to('New issue' , '/issues/new')
+          %li.styled-button.large.light-gray= link_to('Issues' , '/')
+          %li.styled-button.large.light-gray= link_to('New issue' , '/issues/new')
           - if authorised?
-            %li= link_to('My issues' , '/')
-          %li= link_to('Tags' , '/tags')
+            %li.styled-button.large.light-gray= link_to('My issues' , '/')
+          %li.styled-button.large.light-gray= link_to('Tags' , '/tags')
         
-      #content= yield
+      #container= yield
