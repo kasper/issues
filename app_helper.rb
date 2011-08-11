@@ -2,8 +2,12 @@ module AppHelper
 
   module Helpers
   
-    def timestamp_for_file(file)
-      File.mtime(file).to_i
+    def timestamp_for_file(path_to_file)
+      File.mtime(path_to_file).to_i
+    end
+    
+    def timestamped_filename(path_to_file)
+      "#{File.basename(path_to_file)}?#{timestamp_for_file(path_to_file)}"
     end
     
     def time_ago_in_words(datetime)

@@ -1,8 +1,8 @@
 !!!
 %html
   %head
-    %title= yield_content :page_title
-    %link{:href => "/style.css?#{timestamp_for_file(__FILE__)}", :rel => "stylesheet", :type => "text/css"}
+    %title= yield_content :title
+    = stylesheet_link_tag "#{timestamped_filename('./public/style.css')}"
   %body
   
     #wrapper
@@ -14,8 +14,7 @@
             %li= link_to('Sign up' , '/signup')
           - else
             %li= authorised_user.username
-            %li= link_to('Logout' , '/logout')
-          
+            %li= link_to('Logout' , '/logout') 
         
       #global-nav
         %ul
@@ -25,5 +24,4 @@
             %li= link_to('My issues' , '/')
           %li= link_to('Tags' , '/tags')
         
-      #content
-        #{yield}
+      #content= yield

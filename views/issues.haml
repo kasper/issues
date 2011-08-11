@@ -1,10 +1,10 @@
-- content_for :page_title, 'Issues'
+- content_for :title, 'Issues'
 
 #issues
 - if @issues
   %ul
     - @issues.each do |issue|
       %li
-        %span{:class => "title"}= issue.title
+        %span.title= issue.title
         %span by #{issue.user.username}
-        %span{:class => "ago"}= time_ago_in_words(issue.opened_on)
+        %span.ago= time_ago_in_words(issue.opened_on)

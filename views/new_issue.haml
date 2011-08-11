@@ -1,5 +1,5 @@
 %form{:action => "/issues/new", :method => "post"}
   %label Title
-  %input{:type => "text", :id => "issue_title", :name => "issue_title"}
-  %textarea{:id => "issue_content", :name => "issue_content"} Write
+  %input#issue_title{:type => "text", :name => "issue_title"}
+  %textarea#issue_content{:name => "issue_content"} Write
   %button{:type => "submit"} Submit new issue

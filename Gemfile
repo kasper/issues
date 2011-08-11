@@ -6,7 +6,7 @@ gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'sinatra-static-assets', :require => 'sinatra/static_assets'
 gem 'sinatra-content-for2', :git => 'git://github.com/Undev/sinatra-content-for2', :require => 'sinatra/content_for2'
 gem 'data_mapper'
-gem "haml"
+gem 'haml'
 gem 'time-ago-in-words'
 
 group :development do
