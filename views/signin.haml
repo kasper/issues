@@ -1,3 +1,7 @@
+- content_for :title, 'Sign in'
+
+%p.error= flash[:error]
+
 %form{:action => "/signin?return_to=#{@return_path}", :method => "post"}
   %label Username
   %input{:type => "text", :name => "username"}

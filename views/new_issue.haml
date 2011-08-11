@@ -1,5 +1,16 @@
+- content_for :title, 'New issue'
+
 %form{:action => "/issues/new", :method => "post"}
+
   %label Title
   %input#issue_title{:type => "text", :name => "issue_title"}
+  
+  - if @errors && @errors[:title]
+    %p.error= @errors[:title]
+    
   %textarea#issue_content{:name => "issue_content"} Write
+  
+  - if @errors && @errors[:content]
+    %p.error= @errors[:content]
+  
   %button{:type => "submit"} Submit new issue

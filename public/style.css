@@ -1,3 +1,5 @@
+/* Layout */
+
 body {
   margin: 0;
   padding: 0;
@@ -18,12 +20,12 @@ label, input, textarea, button {
 
 #wrapper {
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   width: 800px; 
 }
 
 #user-nav {
-  height: 60px;
+  height: 54px;
   width: inherit;
 }
 
@@ -38,19 +40,18 @@ label, input, textarea, button {
   margin-right: 20px;
 }
 
-#global-nav ul {
-  margin: 20px 0 0 0;
-}
-
 #global-nav li {
   display: inline;
   margin-right: 20px;
 }
 
 #content {
-  margin: 60px 0;
+  margin: 40px 0;
   padding: 5px;
 }
+
+
+/* Issues */
 
 #issues li {
   padding: 5px 0;
@@ -60,7 +61,15 @@ label, input, textarea, button {
   width: 600px;
 }
 
-#issue_content {
+#issue {
+  margin: 0 0 50px 0;
+}
+
+#issue_content, #response_content {
   width: 600px;
   height: 200px;
+}
+
+.response {
+  margin: 20px 0;
 }

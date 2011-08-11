@@ -6,12 +6,12 @@ class User
 	
   property :id, Serial
   property :username, String, :required => true, :unique => true
-  property :email, String, :required => true
+  property :email, String, :required => true, :format => :email_address 
   property :password, String, :required => true
   property :registered_on, DateTime, :required => true
   property :name, String
   property :location, String
-  property :www, String
+  property :www, String, :format => :url
   property :description, Text
   
   has n, :issues

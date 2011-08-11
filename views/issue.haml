@@ -1,0 +1,23 @@
+- content_for :title, @issue.title
+
+#issue
+  %h2= @issue.title
+  %h4 by #{@issue.user.username}
+  #issue-content= @issue.content
+  
+- if @responses
+  #responses
+    - @responses.each do |response|
+      .response
+        = response.content
+        %span by #{response.user.username}
+        %span.ago= time_ago_in_words(response.responded_on)
+   
+- if authorised?    
+  %form{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
+
+    %textarea#response_content{:name => "response_content"} Respond
+    %button{:type => "submit"} Respond
+    
+- else
+  %p= "Please <a href='/signin?return_to=/issues/#{@issue.id}'>sign in</a> to respond."

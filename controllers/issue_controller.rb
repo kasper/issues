@@ -11,10 +11,12 @@ class IssueController < Base
     
     new_issue = Issue.new_issue(authorised_user, issue_title, issue_content)
     
+    # Was the issue saved?
     if new_issue.saved?
       redirect to("/issues/#{new_issue.id}")
     else
-      # Error handling
+      @errors = new_issue.errors
+      haml :new_issue
     end
     
   end
@@ -23,6 +25,7 @@ class IssueController < Base
   
     @issue = Issue.get(params[:id])
     pass unless @issue
+    @responses = @issue.responses
     haml :issue
     
   end
@@ -59,7 +62,7 @@ class IssueController < Base
     new_response = Response.new_response(authorised_user, belonging_to_issue, response_content)
     
     if new_response.saved?
-      redirect to("/issue/#{belonging_to_issue.id}")
+      redirect to("/issues/#{belonging_to_issue.id}")
     else
       # Error handling
     end

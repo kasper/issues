@@ -15,7 +15,7 @@ class UserController < Base
     if authorise(username, password)
       redirect to(return_path)
     else
-      # Error handling
+      flash.now[:error] = 'Wrong username or password.'
       haml :signin
     end
     
@@ -38,7 +38,7 @@ class UserController < Base
       authorise(username, password)
       redirect to('/')
     else
-      # Error handling
+      @errors = new_user.errors
       haml :signup
     end
     

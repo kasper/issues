@@ -1,8 +1,23 @@
+- content_for :title, 'Sign up'
+
 %form{:action => "/signup", :method => "post"}
+
   %label Username
   %input{:type => "text", :name => "username"}
+  
+  - if @errors && @errors[:username]
+    %p.error= @errors[:username]
+  
   %label Email
   %input{:type => "text", :name => "email"}
+  
+  - if @errors && @errors[:email]
+    %p.error= @errors[:email]
+  
   %label Password
   %input{:type => "text", :name => "password"}
+  
+  - if @errors && @errors[:password]
+    %p.error= @errors[:password]
+  
   %button{:type => "submit"} Sign up
