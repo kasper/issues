@@ -27,10 +27,6 @@ input, textarea, button {
   font-size: 12px;
 }
 
-button {
-  border: 0;
-}
-
 ul {
   padding: 0;
   list-style-position: inside;
@@ -72,18 +68,21 @@ ul {
 #main-nav li {
   display: inline;
   margin-right: 10px;
+  background-color: #7f7f7f; 
+  font-size: 14px;
 }
 
 #main-nav a {
   color: inherit;
 }
 
-/* Button */
+/* Buttons */
 
 .styled-button {
   padding: 5px 10px 6px;
   background: #222222 url(/overlay.png) repeat-x;
   border-radius: 5px;
+  border: 0px;
   border-bottom: 1px solid rgba(0,0,0,0.25);
   font-weight: bold;
   color: #ffffff;
@@ -91,28 +90,11 @@ ul {
   cursor: pointer;
 }
 
-/* Button sizes */
+/* Inputs */
 
-.styled-button.small {
+input.styled-button {
+  background-color: #67b761;
   font-size: 11px;
-}
-
-.styled-button.medium {
-  font-size: 13px;
-}
-
-.styled-button.large {
-  font-size: 14px;
-}
-
-/* Button colors */
-
-.styled-button.light-gray {
-	background-color: #7f7f7f; 
-}
-
-.styled-button.green {
-	background-color: #67b761;
 }
 
 /* Errors */

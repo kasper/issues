@@ -17,7 +17,7 @@
   %form{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
 
     %textarea#response_content{:name => "response_content"} Respond
-    %button{:type => "submit"} Respond
+    %input{:type => "submit", :value => "Respond"}
     
 - else
   %p= "Please <a href='/signin?return_to=/issues/#{@issue.id}'>sign in</a> to respond."
