@@ -1,22 +1,23 @@
 class IssueController < Base
   
   get '/issues/new', :auth => :user do
+    @new_issue = Issue.new
     haml :new_issue
   end
   
   post '/issues/new', :auth => :user do
     
-    @issue_title = params[:issue_title]
-    @issue_content = params[:issue_content]
+    issue_title = params[:issue_title]
+    issue_content = params[:issue_content]
     
-    new_issue = Issue.new_issue(authorised_user, @issue_title, @issue_content)
+    @new_issue = Issue.new_issue(authorised_user, issue_title, issue_content)
     
     # Was the issue saved?
-    if new_issue.saved?
+    if @new_issue.saved?
       redirect to("/issues/#{new_issue.id}")
     else
       # Populate view
-      @errors = new_issue.errors
+      @errors = @new_issue.errors
       haml :new_issue
     end
     

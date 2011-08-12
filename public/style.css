@@ -114,7 +114,8 @@ input.styled-button {
 
 /* Forms */
 
-#signin, #signup, input[type="text"], input[type="password"] {
+#signin input[type="text"], #signin input[type="password"],
+#signup input[type="text"], #signup input[type="password"] {
   width: 150px;
 }
 
