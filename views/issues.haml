@@ -1,7 +1,7 @@
 - content_for :title, 'Issues'
 
 - if @issues
-  %ul#issues
+  %ul#issues-list
     - @issues.each do |issue|
       %li
         %span= link_to(issue.title, "/issues/#{issue.id}")
