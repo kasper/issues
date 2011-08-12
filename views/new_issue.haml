@@ -2,16 +2,16 @@
 
 %form#new-issue{:action => "/issues/new", :method => "post"}
 
-  %label= Title
+  %label{:class => ("error" unless @new_issue.title.nil? || !@new_issue.title.empty?)} Title
   %input{:type => "text", :name => "issue_title", :value => @new_issue.title}
   
-  - if @errors && @errors[:title]
+  - if @errors && !@new_issue.title.empty?
     %p.error= @errors[:title]
   
-  %label Write
+  %label{:class => ("error" unless @new_issue.content.nil? || !@new_issue.content.empty?)} Write
   %textarea{:name => "issue_content"}= @new_issue.content
   
-  - if @errors && @errors[:content]
+  - if @errors && !@new_issue.content.empty?
     %p.error= @errors[:content]
   
   %input.styled-button{:type => "submit", :value => "Submit new issue"}

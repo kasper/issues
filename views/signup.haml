@@ -5,18 +5,21 @@
   %label{:class => ("error" unless @new_user.username.nil? || !@new_user.username.empty?)} Username  
   %input{:type => "text", :name => "username", :value => @new_user.username}
   
+  - # Show username error (except blank error)
   - if @errors && !@new_user.username.empty?
     %p.error= @errors[:username]
   
   %label{:class => ("error" unless @new_user.email.nil? || !@new_user.email.empty?)} Email
   %input{:type => "text", :name => "email", :value => @new_user.email}
   
+  - # Show email error (except blank error)
   - if @errors && !@new_user.email.empty?
     %p.error= @errors[:email]
   
   %label{:class => ("error" unless @new_user.password.nil? || !@new_user.password.empty?)} Password
   %input{:type => "password", :name => "password"}
   
+  - # Show password error (except blank error)
   - if @errors && !@new_user.password.empty?
     %p.error= @errors[:password]
   

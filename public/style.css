@@ -36,7 +36,7 @@ a {
 }
 
 a:hover {
-  color: #387496;
+  color: #3583b9;
 }
 
 /* Structure */
@@ -80,7 +80,12 @@ a:hover {
   font-size: 14px;
 }
 
+#main-nav li:hover {
+  background-color: #656565;   
+}
+
 #main-nav a {
+  padding: 5px 10px 6px;
   color: inherit;
 }
 
@@ -98,6 +103,10 @@ a:hover {
   cursor: pointer;
 }
 
+li.styled-button {
+  padding: 5px 0;
+}
+
 /* Errors */
 
 label.error {
@@ -112,8 +121,12 @@ p.error {
 /* Inputs */
 
 input.styled-button {
-  background-color: #67b761;
+  background-color: #53ad4b;
   font-size: 11px;
+}
+
+input.styled-button:hover {
+  background-color: #439340;
 }
 
 /* Forms */
