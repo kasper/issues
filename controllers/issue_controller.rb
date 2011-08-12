@@ -15,7 +15,10 @@ class IssueController < Base
     if new_issue.saved?
       redirect to("/issues/#{new_issue.id}")
     else
+      # Populate view
       @errors = new_issue.errors
+      @issue_title = issue_title
+      @issue_content = issue_content
       haml :new_issue
     end
     
