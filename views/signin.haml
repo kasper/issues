@@ -3,9 +3,9 @@
 -if flash[:error]
   %p.error= flash[:error]
 
-%form{:action => "/signin?return_to=#{@return_path}", :method => "post"}
+%form#signin{:action => "/signin?return_to=#{@return_path}", :method => "post"}
   %label Username
   %input{:type => "text", :name => "username"}
   %label Password
-  %input{:type => "text", :name => "password"}
+  %input{:type => "password", :name => "password"}
   %input.styled-button{:type => "submit", :value => "Sign in"}

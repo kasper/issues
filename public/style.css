@@ -105,12 +105,6 @@ a:hover {
   color: #a94545;
 }
 
-/* Issues */
-
-#issues-list li {
-  padding: 4px 0;
-}
-
 /* Inputs */
 
 input.styled-button {
@@ -118,10 +112,22 @@ input.styled-button {
   font-size: 11px;
 }
 
-#new-issue-title, #new-issue-content, #new-response-content {
-  width: 600px;
+/* Forms */
+
+#signin, #signup, input[type="text"], input[type="password"] {
+  width: 150px;
 }
 
-#new-issue-content, #new-response-content {
+#new-issue textarea, input[type="text"] {
+   width: 600px;
+}
+
+#new-issue textarea {
   height: 200px;
+}
+
+/* Issues */
+
+#issues-list li {
+  padding: 4px 0;
 }
