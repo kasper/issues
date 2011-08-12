@@ -100,7 +100,11 @@ a:hover {
 
 /* Errors */
 
-.error {
+label.error {
+  color: #a94545;
+}
+
+p.error {
   font-size: 13px;
   color: #a94545;
 }

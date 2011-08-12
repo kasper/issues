@@ -2,7 +2,7 @@
 
 %form#new-issue{:action => "/issues/new", :method => "post"}
 
-  %label Title
+  %label= Title
   %input{:type => "text", :name => "issue_title", :value => @new_issue.title}
   
   - if @errors && @errors[:title]

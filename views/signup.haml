@@ -2,22 +2,22 @@
 
 %form#signup{:action => "/signup", :method => "post"}
 
-  %label Username
-  %input{:type => "text", :name => "username"}
+  %label{:class => ("error" unless @new_user.username.nil? || !@new_user.username.empty?)} Username  
+  %input{:type => "text", :name => "username", :value => @new_user.username}
   
-  - if @errors && @errors[:username]
+  - if @errors && !@new_user.username.empty?
     %p.error= @errors[:username]
   
-  %label Email
-  %input{:type => "text", :name => "email"}
+  %label{:class => ("error" unless @new_user.email.nil? || !@new_user.email.empty?)} Email
+  %input{:type => "text", :name => "email", :value => @new_user.email}
   
-  - if @errors && @errors[:email]
+  - if @errors && !@new_user.email.empty?
     %p.error= @errors[:email]
   
-  %label Password
+  %label{:class => ("error" unless @new_user.password.nil? || !@new_user.password.empty?)} Password
   %input{:type => "password", :name => "password"}
   
-  - if @errors && @errors[:password]
+  - if @errors && !@new_user.password.empty?
     %p.error= @errors[:password]
   
   %input.styled-button{:type => "submit", :value => "Sign up"}
