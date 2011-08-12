@@ -6,10 +6,10 @@ class IssueController < Base
   
   post '/issues/new', :auth => :user do
     
-    issue_title = params[:issue_title]
-    issue_content = params[:issue_content]
+    @issue_title = params[:issue_title]
+    @issue_content = params[:issue_content]
     
-    new_issue = Issue.new_issue(authorised_user, issue_title, issue_content)
+    new_issue = Issue.new_issue(authorised_user, @issue_title, @issue_content)
     
     # Was the issue saved?
     if new_issue.saved?
@@ -17,8 +17,6 @@ class IssueController < Base
     else
       # Populate view
       @errors = new_issue.errors
-      @issue_title = issue_title
-      @issue_content = issue_content
       haml :new_issue
     end
     
