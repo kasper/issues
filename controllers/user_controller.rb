@@ -36,7 +36,7 @@ class UserController < Base
     email = params[:email]
     password = params[:password]
     
-    @new_user = User.signup(username, email, password)
+    @new_user = User.sign_up(username, email, password)
     
     # Was the user saved?
     if @new_user.saved?

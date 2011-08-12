@@ -16,13 +16,15 @@ class User
   
   has n, :issues
   has n, :responses
+  
+  validates_length_of :password, :min => 8
+  
+  before :save do
+    self.password = Digest::SHA1.hexdigest(self.password)
+  end
 	
-  def self.signup(username, email, password)
-  
-    if !password.empty?
-      password = Digest::SHA1.hexdigest(password)
-    end
-  
+  def self.sign_up(username, email, password)
+
     new_user = User.create(
       :username => username,
       :email => email,
