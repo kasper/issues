@@ -13,7 +13,7 @@ class IssueController < Base
     
     # Was the issue saved?
     if @new_issue.saved?
-      redirect to("/issues/#{new_issue.id}")
+      redirect to("/issues/#{@new_issue.id}")
     else
       @errors = @new_issue.errors
       haml :new_issue

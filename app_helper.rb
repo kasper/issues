@@ -2,12 +2,18 @@ module AppHelper
 
   module Helpers
   
+    # View helpers
+  
     def timestamp_for_file(path_to_file)
       File.mtime(path_to_file).to_i
     end
     
     def timestamped_filename(path_to_file)
       "#{File.basename(path_to_file)}?#{timestamp_for_file(path_to_file)}"
+    end
+    
+    def ensure_error_class(property)
+      "error" unless property.nil? || !property.empty?
     end
     
     def time_ago_in_words(datetime)

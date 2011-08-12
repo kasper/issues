@@ -2,13 +2,13 @@
 
 %form#new-issue{:action => "/issues/new", :method => "post"}
 
-  %label{:class => ("error" unless @new_issue.title.nil? || !@new_issue.title.empty?)} Title
+  %label{:class => ensure_error_class(@new_issue.title)} Title
   %input{:type => "text", :name => "issue_title", :value => @new_issue.title}
   
   - if @errors && !@new_issue.title.empty?
     %p.error= @errors[:title]
   
-  %label{:class => ("error" unless @new_issue.content.nil? || !@new_issue.content.empty?)} Write
+  %label{:class => ensure_error_class(@new_issue.content)} Write
   %textarea{:name => "issue_content"}= @new_issue.content
   
   - if @errors && !@new_issue.content.empty?
