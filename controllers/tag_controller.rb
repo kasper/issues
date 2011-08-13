@@ -9,7 +9,7 @@ class TagController < Base
   
   get '/tags/:name' do
     
-    @issues = Issue.all(:tags => { :name => params[:name] })
+    @issues = Tag.first(:name => params[:name]).issues
     haml :issues
     
   end

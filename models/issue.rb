@@ -46,9 +46,9 @@ class Issue
       tag_string.gsub!(' ', '-');
         
       # Does the tag already exist? 
-      tag = Tag.get(tag_string)
+      tag = Tag.first(:name => tag_string)
         
-      if !tag
+      unless tag
         tag = Tag.create(:name => tag_string)
       end
           
