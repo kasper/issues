@@ -17,8 +17,10 @@ class UserController < Base
     if authorise(username, password)
       redirect to(return_path)
     else
+    
       flash[:error] = 'Wrong username or password.'
       redirect to('/signin');
+      
     end
     
   end 
@@ -40,11 +42,15 @@ class UserController < Base
     
     # Was the user saved?
     if @new_user.saved?
+    
       authorise(username, password)
       redirect to('/')
+      
     else
+    
       @errors = @new_user.errors
       haml :signup
+      
     end
     
   end

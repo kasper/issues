@@ -7,6 +7,7 @@ class AppController < Base
 
   use UserController
   use IssueController
+  use TagController
 
   get '/' do
   

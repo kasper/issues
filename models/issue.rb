@@ -36,5 +36,28 @@ class Issue
     )
   
   end
+  
+  def tag(tags_as_array)
+  
+    # Add tags
+    tags_as_array.each do |tag_string|
+    
+      # Convert spaces into dashes
+      tag_string.gsub!(' ', '-');
+        
+      # Does the tag already exist? 
+      tag = Tag.first(:name => tag_string)
+        
+      if !tag
+        tag = Tag.create(:name => tag_string)
+      end
+          
+      self.tags << tag
+    
+    end
+    
+    self.save
+    
+  end
 
 end
