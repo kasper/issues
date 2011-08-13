@@ -1,5 +1,9 @@
 - content_for :title, 'Tags'
 
-- @tags.each do |tag|
-  %span
-    =link_to(tag.name, "/tags/#{tag.name}")
+- if @tags
+  
+  #tag-cloud
+  
+    - @tags.each do |tag|
+      
+      =link_to(tag.name, "/tags/#{tag.name}")

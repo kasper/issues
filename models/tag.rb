@@ -8,4 +8,8 @@ class Tag
   has n, :taggings
   has n, :issues, :through => :taggings
 
+  def value
+    self.issues.count / Issue.all.count
+  end
+
 end

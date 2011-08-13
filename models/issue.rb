@@ -39,7 +39,6 @@ class Issue
   
   def tag(tags_as_array)
   
-    # Add tags
     tags_as_array.each do |tag_string|
     
       # Convert spaces into dashes
