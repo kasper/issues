@@ -9,7 +9,10 @@ class Issue
   property :private, Boolean, :default => false  
   
   belongs_to :user
+  
   has n, :responses
+  has n, :taggings
+  has n, :tags, :through => :taggings
   
   def self.new_issue(belonging_to_user, title, content)
   

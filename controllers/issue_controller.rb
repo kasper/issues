@@ -9,19 +9,41 @@ class IssueController < Base
   
   post '/issues/new', :auth => :user do
     
+    issue_tags = params[:issue_tags]
+    tags_as_array = issue_tags.split(/ *, */)
+    
     @new_issue = Issue.new_issue(authorised_user, params[:issue_title], params[:issue_content])
     
     # Was the issue saved?
     if @new_issue.saved?
+    
+      # Add tags
+      tags_as_array.each do |tag_string|
+    
+        tag_string.gsub!(' ', '-');
+        tag = Tag.first(:name => tag_string)
+        
+        if !tag
+          tag = Tag.create(:name => tag_string)
+        end
+          
+        @new_issue.tags << tag
+        @new_issue.save
+      
+      end
+    
       redirect to("/issues/#{@new_issue.id}")
+      
     else
+    
       @errors = @new_issue.errors
       haml :new_issue
+      
     end
     
   end
   
-  get '/issues/:id' do
+  get '/issues/:id*' do
   
     @issue = Issue.get(params[:id])
     pass unless @issue
@@ -62,7 +84,7 @@ class IssueController < Base
     new_response = Response.new_response(authorised_user, belonging_to_issue, response_content)
     
     if new_response.saved?
-      redirect to("/issues/#{belonging_to_issue.id}")
+      redirect to("/issues/#{belonging_to_issue.id}/#{urlify(belonging_to_issue.title)}")
     else
       # Error handling
     end

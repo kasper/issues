@@ -1,23 +1,35 @@
 - content_for :title, @issue.title
 
-#issue
-  %h2= @issue.title
-  %h4 by #{@issue.user.username}
-  #issue-content= @issue.content
-  
-- if @responses
-  #responses
-    - @responses.each do |response|
-      .response
-        = response.content
-        %span by #{response.user.username}
-        %span.ago= time_ago_in_words(response.responded_on)
-   
-- if authorised?    
-  %form{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
+#main-container
 
-    %textarea#response_content{:name => "response_content"} Respond
-    %input{:type => "submit", :value => "Respond"}
+  #issue
+  
+    %h1= @issue.title
+    %h2 opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
+    %p.issue-content= @issue.content
+  
+  #responses
+  
+    - @responses.each do |response|
+  
+      .response{:id => "response_#{response.id}"}
+        %p.response-content= response.content
+        %h2 responsed by #{response.user.username} on #{natural_date(response.responded_on)}
+  
+  - if authorised?
+  
+    %form#new-response{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
     
-- else
-  %p= "Please <a href='/signin?return_to=/issues/#{@issue.id}'>sign in</a> to respond."
+      %label Respond
+      %textarea{:name => "response_content"}
+      
+      %input.styled-button{:type => "submit", :value => "Submit new response"}
+      
+  - else
+  
+    %p #{link_to('Sign in', "/signin?return_to=#{request.path}")} to respond.
+    
+#side-container
+
+- @issue.tags.each do |tag|
+  %span= tag.name

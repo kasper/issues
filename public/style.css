@@ -1,4 +1,4 @@
-html, body, a, div, ul, li, span, form, label {
+html, body, a, h1, h2, p, div, ul, li, span, form, label {
   margin: 0;
   padding: 0;
   border: 0;
@@ -13,6 +13,19 @@ ul {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  line-height: 150%;
+}
+
+h1 {
+  font-size: 18px;
+  color: #313131;
+}
+
+h2 {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: normal;
+  color: #4e4e4e;
 }
 
 label, input, textarea, button {
@@ -25,6 +38,7 @@ label {
 
 input, textarea, button {
   margin: 0 0 15px;
+  padding: 0;
   font-size: 12px;
 }
 
@@ -44,11 +58,21 @@ a:hover {
 #wrapper {
   position: relative;
   margin: 0 auto;
-  width: 800px; 
+  width: 800px;
 }
 
 #container {
   margin: 50px 0;
+}
+
+#main-container {
+  width: 600px;
+  float: left;
+}
+
+#side-container {
+  width: 200px;
+  float: right;
 }
 
 /* Navigation */
@@ -121,6 +145,7 @@ p.error {
 /* Inputs */
 
 input.styled-button {
+  margin: 15px 0;
   background-color: #53ad4b;
   font-size: 11px;
 }
@@ -136,16 +161,44 @@ input.styled-button:hover {
   width: 150px;
 }
 
-#new-issue textarea, input[type="text"] {
-   width: 600px;
+#new-issue textarea, #new-issue input[type="text"], #new-response textarea {
+   width: 598px;
 }
 
-#new-issue textarea {
+#new-issue textarea, #new-response textarea {
   height: 200px;
+}
+
+#new-response {
+  margin: 50px 0;
 }
 
 /* Issues */
 
-#issues-list li {
-  padding: 4px 0;
+#issues li {
+  padding: 5px 0;
+}
+
+/* Issue */
+
+#responses {
+  margin: 40px 0;
+}
+
+#issue {
+  padding: 15px;
+  border: 2px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+
+p.issue-content {
+  margin: 20px 0;
+}
+
+.response {
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 3px;
+  font-size: 13px;
+  margin: 10px 0;
+  padding: 15px;
 }

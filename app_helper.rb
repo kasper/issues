@@ -16,8 +16,23 @@ module AppHelper
       "error" unless property.nil? || !property.empty?
     end
     
+    def urlify(to_urlify)
+    
+      # Downcase and remove special characters
+      to_urlify = to_urlify.downcase.gsub(/[^[:alnum:] ]/, '')
+      
+      # Convert spaces into dashes
+      to_urlify.gsub(' ', '-')
+      
+    end
+    
     def time_ago_in_words(datetime)
       Time.parse(datetime.to_s).ago_in_words
+    end
+    
+    def natural_date(datetime)
+      date = Date.parse(datetime.to_s)
+      date.strftime("%B %d, %Y")
     end
     
   end

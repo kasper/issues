@@ -8,6 +8,7 @@
     #wrapper
   
       #user-nav
+      
         %ul
           - if !authorised?
             %li= link_to('Sign in' , '/signin')
@@ -17,6 +18,7 @@
             %li= link_to('Logout' , '/logout') 
         
       #main-nav
+      
         %ul
           %li.styled-button= link_to('Issues' , '/')
           %li.styled-button= link_to('New issue' , '/issues/new')
