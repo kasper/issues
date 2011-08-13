@@ -1,11 +1,15 @@
 - content_for :title, 'Sign in'
 
+- # Show sign in error
 -if flash[:error]
   %p.error= flash[:error]
 
 %form#signin{:action => "/signin?return_to=#{@return_path}", :method => "post"}
+
   %label Username
   %input{:type => "text", :name => "username"}
+  
   %label Password
   %input{:type => "password", :name => "password"}
+  
   %input.styled-button{:type => "submit", :value => "Sign in"}

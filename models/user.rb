@@ -19,14 +19,10 @@ class User
   
   validates_length_of :password, :min => 8
   
-  before :create do
-    hash_password()
-  end
+  before :create, :hash_password
+  before :update, :hash_password
   
-  before :update do
-    hash_password()
-  end
-  
+  private
   def hash_password()
     self.password = Digest::SHA1.hexdigest(self.password)
   end
