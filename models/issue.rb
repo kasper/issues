@@ -43,7 +43,7 @@ class Issue
     tags_as_array.each do |tag_string|
     
       # Convert spaces into dashes
-      tag_string.gsub!(' ', '-');
+      tag_string.gsub!(' ', '-')
         
       # Does the tag already exist? 
       tag = Tag.first(:name => tag_string)
