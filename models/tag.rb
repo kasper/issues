@@ -2,8 +2,7 @@ class Tag
 
   include DataMapper::Resource
   
-  property :id, Serial
-  property :name, String, :required => true
+  property :name, String, :key => true
   
   has n, :taggings
   has n, :issues, :through => :taggings

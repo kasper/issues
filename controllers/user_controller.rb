@@ -56,8 +56,10 @@ class UserController < Base
   end
   
   get '/logout' do
+  
     logout
     redirect to('/')
+    
   end
 
 end

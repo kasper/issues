@@ -162,7 +162,8 @@ input.styled-button:hover {
 }
 
 #new-issue textarea, #new-issue input[type="text"], #new-response textarea {
-   width: 598px;
+  width: 588px;
+  padding: 5px;
 }
 
 #new-issue textarea, #new-response textarea {
@@ -181,9 +182,6 @@ input.styled-button:hover {
 
 /* Issue */
 
-#responses {
-  margin: 40px 0;
-}
 
 #issue {
   padding: 15px;
@@ -193,6 +191,24 @@ input.styled-button:hover {
 
 p.issue-content {
   margin: 20px 0;
+}
+
+#tags {
+  padding: 10px;
+}
+
+#tags span {
+  display: inline-block;
+  margin: 3px 0;
+  padding: 0 5px;
+  background-color: #ece6c5;
+  border-radius: 3px;
+  font-size: 13px;
+  color: #49473d;
+}
+
+#responses {
+  margin: 40px 0;
 }
 
 .response {

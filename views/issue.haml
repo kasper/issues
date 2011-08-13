@@ -31,5 +31,10 @@
     
 #side-container
 
-- @issue.tags.each do |tag|
-  %span= tag.name
+  - if @issue.tags
+  
+    #tags
+  
+      - @issue.tags.each do |tag|
+    
+        %span= tag.name

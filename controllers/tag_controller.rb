@@ -6,5 +6,12 @@ class TagController < Base
     haml :tags
     
   end
+  
+  get '/tags/:name' do
+    
+    @issues = Issue.all(:tags => { :name => params[:name] })
+    haml :issues
+    
+  end
 
 end
