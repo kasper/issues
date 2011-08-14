@@ -4,28 +4,51 @@
 
   #issue
   
-    .edit
+    - unless @edit_issue
     
-      - if delete_allowed?(@issue)
-        #{link_to('Remove', "/issues/#{@issue.id}/delete")}
-  
-    %h1= @issue.title
-    %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
-    %p.issue-content= @issue.content
+      .edit
+      
+        - if edit_allowed?(@issue)
+          =link_to('Edit', "/issues/#{@issue.id}/edit")
+        - if delete_allowed?(@issue)
+          =link_to('Remove', "/issues/#{@issue.id}/delete")
+    
+      %h1= @issue.title
+      %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
+      %p.issue-content= Redcarpet.new(@issue.content).to_html
+      
+    - else
+    
+      %form#edit-issue{:action => "/issues/#{@issue.id}/edit", :method => "post"}
+        %input{:type => "text", :name => "issue_title", :value => @issue.title}
+        %textarea{:name => "issue_content"}= @issue.content
+        %input.styled-button{:type => "submit", :value => "Save"}
+        %a.styled-button.close{:href => "/issues/#{@issue.id}/title/#{urlify(@issue.title)}"} Close
   
   #responses
   
     - @responses.each do |response|
   
       .response{:id => "response_#{response.id}"}
-      
-        .edit
         
-          - if delete_allowed?(response)
-            #{link_to('Remove', "/issues/#{@issue.id}/responses/#{response.id}/delete")}
-      
-        %p= response.content
-        %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
+        - unless @edit_response && response.id == @edit_response.id
+        
+          .edit
+          
+            - if edit_allowed?(response)
+              =link_to('Edit', "/issues/#{@issue.id}/responses/#{response.id}/edit")
+            - if delete_allowed?(response)
+              #{link_to('Remove', "/issues/#{@issue.id}/responses/#{response.id}/delete")}
+          
+          %p= Redcarpet.new(response.content).to_html
+          %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
+          
+        - else
+        
+          %form#edit-issue{:action => "/issues/#{@issue.id}/responses/#{response.id}/edit", :method => "post"}
+            %textarea{:name => "response_content"}= response.content
+            %input.styled-button{:type => "submit", :value => "Save"}
+            %a.styled-button.close{:href => "/issues/#{@issue.id}/title/#{urlify(@issue.title)}"} Close       
   
   - if authorised?
   

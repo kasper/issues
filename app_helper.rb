@@ -2,7 +2,7 @@ module AppHelper
 
   module Helpers
   
-    # View helpers
+    ## View helpers
   
     def timestamp_for_file(path_to_file)
       File.mtime(path_to_file).to_i
@@ -16,13 +16,6 @@ module AppHelper
       "error" unless property.nil? || !property.empty?
     end
     
-    def urlify(s)
-    
-      # Downcase and remove special characters and convert spaces into dashes
-      s.downcase.gsub(/[^[:alnum:] ]/, '').gsub(' ', '-')
-        
-    end
-    
     def time_ago_in_words(datetime)
       Time.parse(datetime.to_s).ago_in_words
     end
@@ -34,6 +27,13 @@ module AppHelper
       
     end
     
+    def urlify(s)
+    
+      # Downcase and remove special characters and convert spaces into dashes (allow dashes)
+      s.downcase.gsub(/[^[:alnum:] -]/, '').gsub(' ', '-')
+        
+    end
+
   end
   
   def self.registered(app)

@@ -23,10 +23,13 @@ class IssueController < Base
   
   post '/issues/new', :auth => :user do
     
+    issue_title = Sanitize.clean(params[:issue_title])
+    issue_content = Sanitize.clean(params[:issue_content])
+    
     @issue_tags = params[:issue_tags]
     tags_as_array = @issue_tags.split(/ *, */)
     
-    @new_issue = Issue.new_issue(authorised_user, params[:issue_title], params[:issue_content])
+    @new_issue = Issue.new_issue(authorised_user, issue_title, issue_content)
     
     # Was the issue saved?
     if @new_issue.saved?
@@ -62,13 +65,30 @@ class IssueController < Base
     
   end
   
+  
   get '/issues/:id/edit', :auth => :user do
+
+    @issue = Issue.get(params[:id])
+    pass unless @issue
+    @responses = @issue.responses
+    @edit_issue = true
+    haml :issue
+
+  end
+  
+  post '/issues/:id/edit', :auth => :user do
     
     issue_to_edit = Issue.get(params[:id])
     pass unless issue_to_edit
     
     if edit_allowed?(issue_to_edit)
-      # Edit issue
+    
+      issue_title = Sanitize.clean(params[:issue_title])
+      issue_content = Sanitize.clean(params[:issue_content])
+    
+      issue_to_edit.update(:title => issue_title, :content => issue_content)
+      redirect to(path_for_issue(Issue.get(params[:id])))
+    
     end
     
   end
@@ -101,13 +121,28 @@ class IssueController < Base
     
   end
   
-  get '/issues/:issue_id/responses/:response_id/edit', :auth => :user do
+  get '/issues/:issue_id/responses/:response_id/edit', :auth => :user do 
+  
+    @issue = Issue.get(params[:issue_id])
+    pass unless @issue
+    @responses = @issue.responses
+    @edit_response = Response.get(params[:response_id])
+    pass unless @edit_response
+    haml :issue
+  
+  end
+  
+  post '/issues/:issue_id/responses/:response_id/edit', :auth => :user do
     
+    belonging_to_issue = Issue.get(params[:issue_id])
     response_to_edit = Response.get(params[:response_id])
     pass unless response_to_edit
     
     if edit_allowed?(response_to_edit)
-      # Edit response
+      
+      response_to_edit.update(:content => params[:response_content])
+      redirect to(path_for_issue(belonging_to_issue))
+      
     end
     
   end

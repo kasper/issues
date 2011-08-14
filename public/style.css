@@ -35,6 +35,14 @@ input, textarea {
   font-size: 12px;
 }
 
+textarea {
+  resize: vertical;
+}
+
+input[type="submit"] {
+  margin: 0;
+}
+
 /* Links */
 
 a {
@@ -44,6 +52,16 @@ a {
 
 a:hover {
   color: #3583b9;
+}
+
+a.close {
+  background-color: #cb5353;
+  font-size: 11px;
+}
+
+a.close:hover {
+  background-color: #b24949;
+  color: #ffffff;
 }
 
 /* Structure */
@@ -145,6 +163,10 @@ input.styled-button:hover {
   background-color: #439340;
 }
 
+#edit-issue input.styled-button {
+  display: inline;
+}
+
 /* Forms */
 
 #signin input[type="text"], #signin input[type="password"],
@@ -152,17 +174,23 @@ input.styled-button:hover {
   width: 150px;
 }
 
-#new-issue textarea, #new-issue input[type="text"], #new-response textarea {
+#new-issue input[type="text"], #new-issue textarea, #new-response textarea {
   width: 588px;
   padding: 5px;
 }
 
-#new-issue textarea, #new-response textarea {
+#new-issue textarea, #new-response textarea, #edit-issue textarea {
   height: 200px;
 }
 
 #new-response {
   margin: 50px 0;
+}
+
+#edit-issue input[type="text"], #edit-issue textarea {
+  width: 554px;
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
 }
 
 /* Issues */
@@ -192,7 +220,7 @@ p.info {
 }
 
 p.issue-content {
-  margin: 20px 0;
+  margin: 20px 0 0;
 }
 
 #tags {
