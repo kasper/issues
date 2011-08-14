@@ -8,7 +8,7 @@ class Tag
   has n, :taggings
   has n, :issues, :through => :taggings
 
-  def value
+  def popularity
     self.issues.count / Issue.all.count
   end
 

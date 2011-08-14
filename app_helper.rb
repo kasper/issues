@@ -18,12 +18,9 @@ module AppHelper
     
     def urlify(s)
     
-      # Downcase and remove special characters
-      s = s.downcase.gsub(/[^[:alnum:] ]/, '')
-      
-      # Convert spaces into dashes
-      s.gsub(' ', '-')
-      
+      # Downcase and remove special characters and convert spaces into dashes
+      s.downcase.gsub(/[^[:alnum:] ]/, '').gsub(' ', '-')
+        
     end
     
     def time_ago_in_words(datetime)

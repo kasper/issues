@@ -1,4 +1,4 @@
-html, body, a, h1, h2, p, div, ul, li, span, form, label {
+html, body, a, h1, h2, p, span, div, ul, li, form, label {
   margin: 0;
   padding: 0;
   border: 0;
@@ -21,14 +21,7 @@ h1 {
   color: #313131;
 }
 
-h2 {
-  margin-top: 5px;
-  font-size: 13px;
-  font-weight: normal;
-  color: #4e4e4e;
-}
-
-label, input, textarea, button {
+label, input, textarea {
   display: block;
 }
 
@@ -36,7 +29,7 @@ label {
   margin: 10px 0 5px;
 }
 
-input, textarea, button {
+input, textarea {
   margin: 0 0 15px;
   padding: 0;
   font-size: 12px;
@@ -78,13 +71,12 @@ a:hover {
 /* Navigation */
 
 #user-nav {
-  width: inherit;
-  height: 53px;
+  overflow: hidden;
+	width: 100%
 }
 
 #user-nav ul {
-  position: absolute;
-  right: 0;
+  float: right;
   margin: 20px 0;
 }
 
@@ -145,7 +137,6 @@ p.error {
 /* Inputs */
 
 input.styled-button {
-  margin: 15px 0;
   background-color: #53ad4b;
   font-size: 11px;
 }
@@ -187,6 +178,13 @@ input.styled-button:hover {
   padding: 15px;
   border: 2px solid rgba(0,0,0,0.15);
   border-radius: 3px;
+}
+
+p.info {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: normal;
+  color: #4e4e4e;
 }
 
 p.issue-content {
