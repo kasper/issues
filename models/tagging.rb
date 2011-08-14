@@ -8,7 +8,7 @@ class Tagging
   after :destroy do
   
     if self.tag.issues.count == 0
-      tag.destroy
+      self.tag.destroy
     end
   
   end
