@@ -14,6 +14,14 @@ class Issue
   has n, :taggings, :constraint => :destroy
   has n, :tags, :through => :taggings
   
+  def edit_allowed?
+    true
+  end
+  
+  def delete_allowed?
+    responses.count == 0
+  end
+  
   def self.new_issue(belonging_to_user, title, content)
   
     new_issue = Issue.create(

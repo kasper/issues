@@ -1,4 +1,18 @@
 class IssueController < Base
+
+  def edit_allowed?(model)
+    model.edit_allowed? && model.user == authorised_user
+  end
+
+  def delete_allowed?(model)
+    model.delete_allowed? && model.user == authorised_user
+  end
+
+  def path_for_issue(issue)
+    "/issues/#{issue.id}/title/#{urlify(issue.title)}"
+  end
+  
+  ## Routes
   
   get '/issues/new', :auth => :user do
   
@@ -20,7 +34,7 @@ class IssueController < Base
       # Add tags
       @new_issue.tag(tags_as_array)
       
-      redirect to("/issues/#{@new_issue.id}/title/#{urlify(@new_issue.title)}")
+      redirect to(path_for_issue(@new_issue))
       
     else
     
@@ -29,6 +43,14 @@ class IssueController < Base
       
     end
     
+  end
+  
+  get '/issues/:id' do
+  
+    issue = Issue.get(params[:id])
+    pass unless @issue
+    redirect to(path_for_issue(issue))
+  
   end
   
   get '/issues/:id/title/:title' do
@@ -45,8 +67,7 @@ class IssueController < Base
     issue_to_edit = Issue.get(params[:id])
     pass unless issue_to_edit
     
-    # Only the owner of the issue has the privilege to edit
-    if issue_to_edit == authorised_user
+    if edit_allowed?(issue_to_edit)
       # Edit issue
     end
     
@@ -57,8 +78,7 @@ class IssueController < Base
     issue_to_delete = Issue.get(params[:id])
     pass unless issue_to_delete
     
-    # Only the owner of the issue has the privilege to delete
-    if issue_to_delete.user == authorised_user
+    if delete_allowed?(issue_to_delete)
       issue_to_delete.destroy
     end
     
@@ -74,39 +94,40 @@ class IssueController < Base
     new_response = Response.new_response(authorised_user, belonging_to_issue, response_content)
     
     if new_response.saved?
-      redirect to("/issues/#{belonging_to_issue.id}/title/#{urlify(belonging_to_issue.title)}")
+      redirect to(path_for_issue(belonging_to_issue))
     else
       # Error handling
     end
     
   end
   
-  post '/issues/:issue_id/responses/:response_id/edit', :auth => :user do
+  get '/issues/:issue_id/responses/:response_id/edit', :auth => :user do
     
     response_to_edit = Response.get(params[:response_id])
     pass unless response_to_edit
     
-    # Only the owner of the response has the privilege to edit
-    if response_to_edit.user == authorised_user
+    if edit_allowed?(response_to_edit)
       # Edit response
     end
     
   end
   
-  post '/issues/:issue_id/responses/:response_id/delete', :auth => :user do
+  get '/issues/:issue_id/responses/:response_id/delete', :auth => :user do
   
-    response_to_delete = Response.get(params[:response_id])
+    belonging_to_issue = Issue.get(params[:issue_id])
+    response_to_delete = Response.get(params[:response_id]) 
     pass unless response_to_delete
     
-    # Only the owner of the response has the privilege to remove
-    if response_to_edit.user == authorised_user
+    if delete_allowed?(response_to_delete)
       response_to_delete.destroy
     end
-  
+    
+    redirect to(path_for_issue(belonging_to_issue))
+    
   end
   
   get '/issues/*' do
-    "Issue not found."
+    "Error with issues."
   end
 
 end

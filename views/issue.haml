@@ -4,7 +4,10 @@
 
   #issue
   
-    .edit= link_to('Remove', "/issues/#{@issue.id}/delete")
+    .edit
+    
+      - if delete_allowed?(@issue)
+        #{link_to('Remove', "/issues/#{@issue.id}/delete")}
   
     %h1= @issue.title
     %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
@@ -16,7 +19,10 @@
   
       .response{:id => "response_#{response.id}"}
       
-        .edit Remove
+        .edit
+        
+          - if delete_allowed?(response)
+            #{link_to('Remove', "/issues/#{@issue.id}/responses/#{response.id}/delete")}
       
         %p= response.content
         %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
