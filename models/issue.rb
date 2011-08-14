@@ -10,8 +10,8 @@ class Issue
   
   belongs_to :user
   
-  has n, :responses
-  has n, :taggings
+  has n, :responses, :constraint => :destroy
+  has n, :taggings, :constraint => :destroy
   has n, :tags, :through => :taggings
   
   def self.new_issue(belonging_to_user, title, content)

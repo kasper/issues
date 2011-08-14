@@ -173,11 +173,15 @@ input.styled-button:hover {
 
 /* Issue */
 
-
 #issue {
   padding: 15px;
   border: 2px solid rgba(0,0,0,0.15);
   border-radius: 3px;
+}
+
+div.edit {
+  float: right;
+  font-size: 13px;
 }
 
 p.info {

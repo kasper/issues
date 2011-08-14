@@ -4,6 +4,8 @@
 
   #issue
   
+    .edit= link_to('Remove', "/issues/#{@issue.id}/delete")
+  
     %h1= @issue.title
     %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
     %p.issue-content= @issue.content
@@ -13,6 +15,9 @@
     - @responses.each do |response|
   
       .response{:id => "response_#{response.id}"}
+      
+        .edit Remove
+      
         %p= response.content
         %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
   

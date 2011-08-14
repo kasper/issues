@@ -4,5 +4,13 @@ class Tagging
   
   belongs_to :tag, :key => true
   belongs_to :issue, :key => true
-
+  
+  after :destroy do
+  
+    if self.tag.issues.count == 0
+      tag.destroy
+    end
+  
+  end
+  
 end

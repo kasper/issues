@@ -22,7 +22,7 @@
         %ul
           %li.styled-button= link_to('Issues' , '/')
           %li.styled-button= link_to('New issue' , '/issues/new')
-          - unless authorised?
+          - if authorised?
             %li.styled-button= link_to('My issues' , '/')
           %li.styled-button= link_to('Tags' , '/tags')
         

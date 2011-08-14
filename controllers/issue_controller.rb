@@ -20,7 +20,7 @@ class IssueController < Base
       # Add tags
       @new_issue.tag(tags_as_array)
       
-      redirect to("/issues/#{@new_issue.id}")
+      redirect to("/issues/#{@new_issue.id}/title/#{urlify(@new_issue.title)}")
       
     else
     
@@ -31,7 +31,7 @@ class IssueController < Base
     
   end
   
-  get '/issues/:id*' do
+  get '/issues/:id/title/:title' do
   
     @issue = Issue.get(params[:id])
     pass unless @issue
@@ -53,7 +53,7 @@ class IssueController < Base
   end
   
   get '/issues/:id/delete', :auth => :user do
-    
+  
     issue_to_delete = Issue.get(params[:id])
     pass unless issue_to_delete
     
@@ -62,6 +62,8 @@ class IssueController < Base
       issue_to_delete.destroy
     end
     
+    redirect to('/')
+  
   end
   
   post '/issues/:id/responses/new', :auth => :user do
@@ -72,7 +74,7 @@ class IssueController < Base
     new_response = Response.new_response(authorised_user, belonging_to_issue, response_content)
     
     if new_response.saved?
-      redirect to("/issues/#{belonging_to_issue.id}/#{urlify(belonging_to_issue.title)}")
+      redirect to("/issues/#{belonging_to_issue.id}/title/#{urlify(belonging_to_issue.title)}")
     else
       # Error handling
     end
