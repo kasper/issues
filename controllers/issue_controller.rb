@@ -15,7 +15,7 @@ class IssueController < Base
   end
   
   post '/issues/new', :auth => :user do
-    
+  
     issue_title = Sanitize.clean(params[:issue_title])
     issue_content = Sanitize.clean(params[:issue_content])
     issue_tags = Sanitize.clean(params[:issue_tags])

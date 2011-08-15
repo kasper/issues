@@ -29,7 +29,7 @@ module AppHelper
     
       # Downcase and remove special characters and convert spaces into dashes (allow dashes)
       s.downcase.gsub(/[^[:alnum:] -]/, '').gsub(' ', '-')
-        
+          
     end
     
     def json_from_flash(flash)
@@ -42,9 +42,11 @@ module AppHelper
       
     end
     
-    def markdown(text)  
+    def markdown(text)
+     
       options = [:hard_wrap, :autolink, :fenced_code]  
-      Redcarpet.new(text, *options).to_html  
+      Redcarpet.new(text, *options).to_html
+      
     end  
     
   end
