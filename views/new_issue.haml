@@ -1,22 +1,25 @@
 - content_for :title, 'New issue'
 
+- new_issue = json_from_flash(flash[:new_issue])
+- errors = json_from_flash(flash[:errors])
+
 %form#new-issue{:action => "/issues/new", :method => "post"}
 
-  %label{:class => ensure_error_class(@new_issue.title)} Title
-  %input{:type => "text", :name => "issue_title", :value => @new_issue.title}
+  %label{:class => ensure_error_class(new_issue["title"])} Title
+  %input{:type => "text", :name => "issue_title", :value =>  json_from_flash(flash[:new_issue])["title"]}
   
   - # Show title error (except blank error)
-  - if @errors && !@new_issue.title.empty?
-    %p.error= @errors[:title]
+  - if flash[:errors] && !new_issue["title"].empty?
+    %p.error= errors["title"]
   
-  %label{:class => ensure_error_class(@new_issue.content)} Write
-  %textarea{:name => "issue_content"}= @new_issue.content
+  %label{:class => ensure_error_class(new_issue["content"])} Write
+  %textarea{:name => "issue_content"}= new_issue["content"]
   
   - # Show content error (except blank error)
-  - if @errors && !@new_issue.content.empty?
-    %p.error= @errors[:content]
+  - if flash[:errors] && !new_issue["content"].empty?
+    %p.error= errors["content"]
     
   %label Tags (separate with commas)
-  %input{:type => "text", :name => "issue_tags", :value => @issue_tags}
+  %input{:type => "text", :name => "issue_tags", :value => flash[:issue_tags]}
   
   %input.styled-button{:type => "submit", :value => "Submit new issue"}

@@ -1,26 +1,29 @@
 - content_for :title, 'Sign up'
 
+- new_user = json_from_flash(flash[:new_user])
+- errors = json_from_flash(flash[:errors])
+
 %form#signup{:action => "/signup", :method => "post"}
 
-  %label{:class => ensure_error_class(@new_user.username)} Username  
-  %input{:type => "text", :name => "username", :value => @new_user.username}
+  %label{:class => ensure_error_class(new_user["username"])} Username  
+  %input{:type => "text", :name => "username", :value => new_user["username"]}
   
   - # Show username error (except blank error)
-  - if @errors && !@new_user.username.empty?
-    %p.error= @errors[:username]
+  - if flash[:errors] && !new_user["username"].empty?
+    %p.error= errors["username"]
   
-  %label{:class => ensure_error_class(@new_user.email)} Email
-  %input{:type => "text", :name => "email", :value => @new_user.email}
+  %label{:class => ensure_error_class(new_user["email"])} Email
+  %input{:type => "text", :name => "email", :value => new_user["email"]}
   
   - # Show email error (except blank error)
-  - if @errors && !@new_user.email.empty?
-    %p.error= @errors[:email]
+  - if flash[:errors] && !new_user["email"].empty?
+    %p.error= errors["email"]
   
-  %label{:class => ensure_error_class(@new_user.password)} Password
+  %label{:class => ensure_error_class(new_user["password"])} Password
   %input{:type => "password", :name => "password"}
   
   - # Show password error (except blank error)
-  - if @errors && !@new_user.password.empty?
-    %p.error= @errors[:password]
+  - if flash[:errors] && !new_user["password"].empty?
+    %p.error= errors["password"]
   
   %input.styled-button{:type => "submit", :value => "Sign up"}

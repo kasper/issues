@@ -89,6 +89,7 @@ DEPENDENCIES
   dm-postgres-adapter
   dm-sqlite-adapter
   haml
+  json
   redcarpet
   require_all
   sanitize

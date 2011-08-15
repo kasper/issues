@@ -1,5 +1,7 @@
 - content_for :title, @issue.title
 
+- new_response = json_from_flash(flash[:new_response])
+
 #main-container
 
   #issue
@@ -30,7 +32,7 @@
     - @responses.each do |response|
   
       .response{:id => "response_#{response.id}"}
-        
+      
         - unless @edit_response && response.id == @edit_response.id
         
           .edit
@@ -54,9 +56,8 @@
   
     %form#new-response{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
     
-      %label Respond
-      %textarea{:name => "response_content"}
-      
+      %label{:class => ensure_error_class(new_response["content"])} Respond
+      %textarea{:name => "response_content"}= new_response["content"]
       %input.styled-button{:type => "submit", :value => "Submit new response"}
       
   - else

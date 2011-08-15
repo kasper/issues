@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem 'require_all'
+gem 'json'
 gem 'sinatra', :require => 'sinatra/base'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'sinatra-static-assets', :require => 'sinatra/static_assets'

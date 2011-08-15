@@ -33,7 +33,17 @@ module AppHelper
       s.downcase.gsub(/[^[:alnum:] -]/, '').gsub(' ', '-')
         
     end
-
+    
+    def json_from_flash(flash)
+    
+      if flash
+        JSON.parse(flash)
+      else
+        ""
+      end
+      
+    end
+    
   end
   
   def self.registered(app)

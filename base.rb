@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
+require 'patching'
 
 require 'init'
 require 'app_helper'

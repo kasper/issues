@@ -26,10 +26,7 @@ class UserController < Base
   end 
   
   get '/signup' do
-  
-    @new_user = User.new
     haml :signup
-    
   end
   
   post '/signup' do
@@ -38,18 +35,19 @@ class UserController < Base
     email = params[:email]
     password = params[:password]
     
-    @new_user = User.sign_up(username, email, password)
+    new_user = User.sign_up(username, email, password)
     
     # Was the user saved?
-    if @new_user.saved?
+    if new_user.saved?
     
       authorise(username, password)
       redirect to('/')
       
     else
     
-      @errors = @new_user.errors
-      haml :signup
+      flash[:new_user] = new_user.to_json
+      flash[:errors] = new_user.errors.to_json
+      redirect to('/signup')
       
     end
     
