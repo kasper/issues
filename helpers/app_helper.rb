@@ -2,8 +2,6 @@ module AppHelper
 
   module Helpers
   
-    ## View helpers
-  
     def timestamp_for_file(path_to_file)
       File.mtime(path_to_file).to_i
     end
@@ -43,6 +41,11 @@ module AppHelper
       end
       
     end
+    
+    def markdown(text)  
+      options = [:hard_wrap, :autolink, :fenced_code]  
+      Redcarpet.new(text, *options).to_html  
+    end  
     
   end
   

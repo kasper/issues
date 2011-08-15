@@ -4,7 +4,7 @@ Bundler.require(:default)
 require 'patching'
 
 require 'init'
-require 'app_helper'
+require_all 'helpers'
 require 'auth'
 
 class Base < Sinatra::Base
@@ -21,5 +21,7 @@ class Base < Sinatra::Base
   
   register AppHelper
   register Auth
+  register IssueHelper
+  register UserHelper
   
 end

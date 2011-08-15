@@ -7,7 +7,7 @@
     - @issues.each do |issue|
     
       %li#issue{:id => issue.id}
-        %span= link_to(issue.title, "/issues/#{issue.id}/title/#{urlify(issue.title)}")
+        %span= link_to(issue.title, issue_path(issue))
         %span by #{issue.user.username}
         %span= time_ago_in_words(issue.opened_on)
           

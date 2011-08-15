@@ -4,7 +4,7 @@
 -if flash[:error]
   %p.error= flash[:error]
 
-%form#signin{:action => "/signin?return_to=#{@return_path}", :method => "post"}
+%form#signin{:action => sign_in_path(@return_path), :method => "post"}
 
   %label Username
   %input{:type => "text", :name => "username"}

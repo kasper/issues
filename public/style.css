@@ -1,4 +1,4 @@
-html, body, a, h1, h2, p, span, div, ul, li, form, label {
+html, body, a, h1, h2, pre, p, span, code, div, ul, li, form, label {
   margin: 0;
   padding: 0;
   border: 0;
@@ -19,6 +19,10 @@ body {
 h1 {
   font-size: 18px;
   color: #313131;
+}
+
+p {
+  margin: 15px 0;
 }
 
 label, input, textarea {
@@ -148,7 +152,6 @@ label.error {
 }
 
 p.error {
-  margin: 10px 0;
   font-size: 13px;
   color: #a94545;
 }
@@ -211,6 +214,12 @@ input.styled-button:hover {
 div.edit {
   float: right;
   font-size: 13px;
+  margin-bottom: 10px;
+}
+
+div.edit li {
+  display: inline;
+  margin-left: 10px;
 }
 
 p.info {
@@ -248,4 +257,8 @@ p.issue-content {
   font-size: 13px;
   margin: 10px 0;
   padding: 15px;
+}
+
+.response p {
+  clear: both;
 }

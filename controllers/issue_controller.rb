@@ -7,10 +7,6 @@ class IssueController < Base
   def delete_allowed?(model)
     model.delete_allowed? && model.user == authorised_user
   end
-
-  def path_for_issue(issue)
-    "/issues/#{issue.id}/title/#{urlify(issue.title)}"
-  end
   
   ## New issue
   
@@ -35,14 +31,14 @@ class IssueController < Base
       # Add tags
       new_issue.tag(tags_as_array)
     
-      redirect to(path_for_issue(new_issue))
+      redirect to(issue_path(new_issue))
       
     else
     
       flash[:new_issue] = new_issue.to_json
       flash[:issue_tags] = issue_tags
       flash[:errors] = new_issue.errors.to_json
-      redirect to('/issues/new')
+      redirect to(new_issue_path)
       
     end
     
@@ -55,7 +51,7 @@ class IssueController < Base
     issue = Issue.get(params[:id])
     pass unless @issue
     
-    redirect to(path_for_issue(issue))
+    redirect to(issue_path(issue))
   
   end
   
@@ -94,7 +90,7 @@ class IssueController < Base
     
       # Fail silently
       issue_to_edit.update(:title => issue_title, :content => issue_content)
-      redirect to(path_for_issue(Issue.get(params[:id])))
+      redirect to(issue_path(Issue.get(params[:id])))
     
     end
     
@@ -133,7 +129,7 @@ class IssueController < Base
       
     end
     
-    redirect to(path_for_issue(issue))
+    redirect to(issue_path(issue))
     
   end
   
@@ -165,7 +161,7 @@ class IssueController < Base
     
       response_content =  Sanitize.clean(params[:response_content])
       response_to_edit.update(:content => response_content)
-      redirect to(path_for_issue(belonging_to_issue))
+      redirect to(issue_path(belonging_to_issue))
       
     end
     
@@ -186,7 +182,7 @@ class IssueController < Base
       response_to_delete.destroy
     end
     
-    redirect to(path_for_issue(belonging_to_issue))
+    redirect to(issue_path(belonging_to_issue))
     
   end
   

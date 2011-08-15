@@ -3,7 +3,7 @@
 - new_user = json_from_flash(flash[:new_user])
 - errors = json_from_flash(flash[:errors])
 
-%form#signup{:action => "/signup", :method => "post"}
+%form#signup{:action => sign_up_path, :method => "post"}
 
   %label{:class => ensure_error_class(new_user["username"])} Username  
   %input{:type => "text", :name => "username", :value => new_user["username"]}

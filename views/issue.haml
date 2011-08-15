@@ -10,22 +10,25 @@
     
       .edit
       
-        - if edit_allowed?(@issue)
-          =link_to('Edit', "/issues/#{@issue.id}/edit")
-        - if delete_allowed?(@issue)
-          =link_to('Remove', "/issues/#{@issue.id}/delete")
+        %ul
+          - if edit_allowed?(@issue)
+            %li= link_to('Edit', edit_issue_path(@issue))
+          - if delete_allowed?(@issue)
+            %li= link_to('Remove', delete_issue_path(@issue))
     
       %h1= @issue.title
       %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
-      %p.issue-content= Redcarpet.new(@issue.content).to_html
-      
+      %p.issue-content= markdown(@issue.content)
+     
     - else
     
-      %form#edit-issue{:action => "/issues/#{@issue.id}/edit", :method => "post"}
+      - # Edit issue
+    
+      %form#edit-issue{:action => edit_issue_path(@issue), :method => "post"}
         %input{:type => "text", :name => "issue_title", :value => @issue.title}
         %textarea{:name => "issue_content"}= @issue.content
         %input.styled-button{:type => "submit", :value => "Save"}
-        %a.styled-button.close{:href => "/issues/#{@issue.id}/title/#{urlify(@issue.title)}"} Close
+        %a.styled-button.close{:href => issue_path(@issue)} Close
   
   #responses
   
@@ -37,24 +40,27 @@
         
           .edit
           
-            - if edit_allowed?(response)
-              =link_to('Edit', "/issues/#{@issue.id}/responses/#{response.id}/edit")
-            - if delete_allowed?(response)
-              #{link_to('Remove', "/issues/#{@issue.id}/responses/#{response.id}/delete")}
+            %ul
+              - if edit_allowed?(response)
+                %li= link_to('Edit', edit_response_path(response))
+              - if delete_allowed?(response)
+                %li= link_to('Remove', delete_response_path(response))
           
-          %p= Redcarpet.new(response.content).to_html
+          %p.response-content= markdown(response.content)
           %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
-          
+         
         - else
         
-          %form#edit-issue{:action => "/issues/#{@issue.id}/responses/#{response.id}/edit", :method => "post"}
+          - # Edit response
+        
+          %form#edit-issue{:action => edit_response_path(response), :method => "post"}
             %textarea{:name => "response_content"}= response.content
             %input.styled-button{:type => "submit", :value => "Save"}
-            %a.styled-button.close{:href => "/issues/#{@issue.id}/title/#{urlify(@issue.title)}"} Close       
+            %a.styled-button.close{:href => issue_path(@issue)} Close       
   
   - if authorised?
   
-    %form#new-response{:action => "/issues/#{@issue.id}/responses/new", :method => "post"}
+    %form#new-response{:action => new_response_path(@issue), :method => "post"}
     
       %label{:class => ensure_error_class(new_response["content"])} Respond
       %textarea{:name => "response_content"}= new_response["content"]
@@ -62,7 +68,7 @@
       
   - else
   
-    %p #{link_to('Sign in', "/signin?return_to=#{request.path}")} to respond.
+    %p #{link_to('Sign in', sign_in_path(request.path))} to respond.
     
 #side-container
 

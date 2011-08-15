@@ -2,6 +2,10 @@ class UserController < Base
   
   get '/signin' do
   
+    if authorised?
+      redirect to('/')
+    end
+  
     @return_path = params[:return_to]
     haml :signin
     
@@ -26,7 +30,13 @@ class UserController < Base
   end 
   
   get '/signup' do
+  
+    if authorised?
+      redirect to('/')
+    end
+    
     haml :signup
+    
   end
   
   post '/signup' do

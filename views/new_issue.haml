@@ -3,7 +3,7 @@
 - new_issue = json_from_flash(flash[:new_issue])
 - errors = json_from_flash(flash[:errors])
 
-%form#new-issue{:action => "/issues/new", :method => "post"}
+%form#new-issue{:action => new_issue_path, :method => "post"}
 
   %label{:class => ensure_error_class(new_issue["title"])} Title
   %input{:type => "text", :name => "issue_title", :value =>  json_from_flash(flash[:new_issue])["title"]}
