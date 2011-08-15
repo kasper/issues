@@ -23,7 +23,7 @@
           %li.styled-button= link_to('Issues' , '/')
           %li.styled-button= link_to('New issue' , new_issue_path)
           - if authorised?
-            %li.styled-button= link_to('My issues' , '/')
+            %li.styled-button= link_to("My issues (#{authorised_user.issues.count})" , authorised_user_issues_path)
           %li.styled-button= link_to('Tags' , '/tags')
         
       #container= yield

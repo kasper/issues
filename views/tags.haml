@@ -6,4 +6,4 @@
   
     - @tags.each do |tag|
       
-      =link_to(tag.name, "/tags/#{tag.name}")
+      %a{:class => tag_popularity_class(tag), :href => "/tags/#{tag.name}"}= tag.name

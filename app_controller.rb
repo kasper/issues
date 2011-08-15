@@ -11,6 +11,7 @@ class AppController < Base
 
   get '/' do
   
+    content_for :title, 'Issues'
     @issues = Issue.all(:order => [ :opened_on.desc ])
     haml :issues
     

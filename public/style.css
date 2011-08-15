@@ -289,3 +289,21 @@ p.issue-content {
 .response p {
   clear: both;
 }
+
+/* Tags */
+
+.small-popularity {
+  font-size: inherit;
+}
+
+.medium-popularity {
+  font-size: 22px;
+}
+
+.large-popularity {
+  font-size:38px;
+}
+
+.vast-popularity {
+  font-size: 54px;
+}

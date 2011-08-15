@@ -8,6 +8,16 @@ class IssueController < Base
     model.delete_allowed? && model.user == authorised_user
   end
   
+  ## User's issues
+  
+  get '/issues', :auth => :user do
+  
+    content_for :title, 'My issues'
+    @issues = authorised_user.issues(:order => [ :opened_on.desc ])
+    haml :issues
+  
+  end
+  
   ## New issue
   
   get '/issues/new', :auth => :user do
@@ -223,12 +233,6 @@ class IssueController < Base
     
     redirect to(issue_path(belonging_to_issue))
     
-  end
-  
-  ## Catch route errors
-  
-  get '/issues/*' do
-    "Issue error!"
   end
 
 end

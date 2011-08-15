@@ -2,6 +2,10 @@ module IssueHelper
 
   module Helpers
   
+    def authorised_user_issues_path
+      '/issues'
+    end
+  
     def new_issue_path
       '/issues/new'
     end

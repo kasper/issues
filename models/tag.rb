@@ -9,7 +9,7 @@ class Tag
   has n, :issues, :through => :taggings
 
   def popularity
-    self.issues.count / Issue.all.count
+    self.issues.count.to_f / Issue.all.count.to_f
   end
 
 end
