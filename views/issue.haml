@@ -78,4 +78,20 @@
   
       - @issue.tags.each do |tag|
     
-        %span= tag.name
+        %span
+          =link_to(tag.name, "/tags/#{tag.name}")
+          
+          - if edit_allowed?(@issue)
+            
+            - # Delete tagging
+            
+            %span.remove-tag
+              =link_to('x', delete_tagging_path(@issue, tag))
+              
+      - if edit_allowed?(@issue)
+      
+        - # Add tag
+        
+        %form#add-tag{:action => add_tagging_path(@issue), :method => "post"}
+          %input{:type => "text", :name => "tag_name"}
+          %input.styled-button{:type => "submit", :value => "Add tag"}

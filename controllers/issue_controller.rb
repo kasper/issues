@@ -112,6 +112,45 @@ class IssueController < Base
   
   end
   
+  ## Add new tag to issue
+  
+  post '/issues/:issue_id/tags/new' do
+  
+    belonging_to_issue = Issue.get(params[:issue_id])
+    pass unless belonging_to_issue
+    
+    tag_name = Sanitize.clean(params[:tag_name])
+    
+    if edit_allowed?(belonging_to_issue)
+      belonging_to_issue.tag([tag_name])
+    end
+    
+    redirect to(issue_path(belonging_to_issue))
+    
+  end
+  
+  ## Delete tag related to issue
+  
+  get '/issues/:issue_id/tags/:tag_id/delete' do
+  
+    belonging_to_issue = Issue.get(params[:issue_id])
+    pass unless belonging_to_issue
+    
+    tag = Tag.get(params[:tag_id])
+    pass unless tag
+    
+    # Fail silently
+    if edit_allowed?(belonging_to_issue)
+    
+      tagging_to_delete = Tagging.get(belonging_to_issue.id, tag.id)
+      tagging_to_delete.destroy
+    
+    end
+    
+    redirect to(issue_path(belonging_to_issue))
+  
+  end
+  
   ## New response
   
   post '/issues/:id/responses/new', :auth => :user do

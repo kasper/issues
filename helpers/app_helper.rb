@@ -44,7 +44,7 @@ module AppHelper
     
     def markdown(text)
      
-      options = [:hard_wrap, :autolink, :fenced_code]  
+      options = [:hard_wrap, :autolink]  
       Redcarpet.new(text, *options).to_html
       
     end  

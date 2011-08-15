@@ -23,5 +23,6 @@ class Base < Sinatra::Base
   register Auth
   register IssueHelper
   register UserHelper
+  register TagHelper
   
 end
