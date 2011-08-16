@@ -2,6 +2,10 @@ module AppHelper
 
   module Helpers
   
+    def root_path
+     '/'
+    end
+  
     def timestamp_for_file(path_to_file)
       File.mtime(path_to_file).to_i
     end

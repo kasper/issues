@@ -20,10 +20,10 @@
       #main-nav
       
         %ul
-          %li.styled-button= link_to('Issues' , '/')
+          %li.styled-button= link_to('Issues' , root_path)
           %li.styled-button= link_to('New issue' , new_issue_path)
           - if authorised?
             %li.styled-button= link_to("My issues (#{authorised_user.issues.count})" , authorised_user_issues_path)
-          %li.styled-button= link_to('Tags' , '/tags')
+          %li.styled-button= link_to('Tags' , tags_path)
         
       #container= yield

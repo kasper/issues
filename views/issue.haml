@@ -79,7 +79,7 @@
       - @issue.tags.each do |tag|
     
         %span
-          =link_to(tag.name, "/tags/#{tag.name}")
+          =link_to(tag.name, tag_path(tag))
           
           - if edit_allowed?(@issue)
             

@@ -2,6 +2,14 @@ module TagHelper
 
   module Helpers
   
+    def tags_path
+      '/tags'
+    end
+    
+    def tag_path(tag)
+      "/tags/#{tag.name}"
+    end
+  
     def tag_popularity_class(tag)
     
       if tag.popularity <= 0.25

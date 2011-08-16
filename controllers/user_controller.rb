@@ -3,7 +3,7 @@ class UserController < Base
   get '/signin' do
   
     if authorised?
-      redirect to('/')
+      redirect to(root_path)
     end
   
     @return_path = params[:return_to]
@@ -23,7 +23,7 @@ class UserController < Base
     else
     
       flash[:error] = 'Wrong username or password.'
-      redirect to('/signin');
+      redirect to(sign_in_path(return_path));
       
     end
     
@@ -32,7 +32,7 @@ class UserController < Base
   get '/signup' do
   
     if authorised?
-      redirect to('/')
+      redirect to(root_path)
     end
     
     haml :signup
@@ -51,13 +51,13 @@ class UserController < Base
     if new_user.saved?
     
       authorise(username, password)
-      redirect to('/')
+      redirect to(root_path)
       
     else
     
       flash[:new_user] = new_user.to_json
       flash[:errors] = new_user.errors.to_json
-      redirect to('/signup')
+      redirect to(sign_up_path)
       
     end
     
@@ -66,7 +66,7 @@ class UserController < Base
   get '/logout' do
   
     logout
-    redirect to('/')
+    redirect to(root_path)
     
   end
 

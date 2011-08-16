@@ -8,6 +8,16 @@ class IssueController < Base
     model.delete_allowed? && model.user == authorised_user
   end
   
+  ## All public issues
+  
+  get '/' do
+  
+    content_for :title, 'What is your issue?'
+    @issues = Issue.all(:order => [ :opened_on.desc ])
+    haml :issues
+    
+  end
+  
   ## User's issues
   
   get '/issues', :auth => :user do
@@ -118,7 +128,7 @@ class IssueController < Base
       issue_to_delete.destroy
     end
     
-    redirect to('/')
+    redirect to(root_path)
   
   end
   

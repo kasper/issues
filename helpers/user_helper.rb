@@ -1,10 +1,6 @@
 module UserHelper
 
   module Helpers
-  
-    def sign_in_path
-      '/signin'
-    end
     
     def sign_in_path(return_to)
       "/signin?return_to=#{return_to}"
