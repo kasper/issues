@@ -86,7 +86,7 @@ class UserController < Base
   
     @user = User.first(:username => params[:username])
     pass unless @user
-    @issues = @user.issues(:order => [ :opened_on.desc ])
+    @issues = @user.issues(:private_issue => false, :order => [ :opened_on.desc ])
     
     haml :user
   

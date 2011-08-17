@@ -22,4 +22,7 @@
   %label Tags (separate with commas)
   %input{:type => "text", :name => "issue_tags", :value => flash[:issue_tags]}
   
+  %label Private?
+  %input{:type => "checkbox", :name => "issue_private", :checked => flash[:issue_private]}
+  
   %input.styled-button{:type => "submit", :value => "Submit new issue"}
