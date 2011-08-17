@@ -7,7 +7,7 @@ class Response
   property :responded_on, DateTime, :required => true
   
   belongs_to :user
-  belongs_to :issue 
+  belongs_to :issue
   
   def edit_allowed?
     true

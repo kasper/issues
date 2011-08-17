@@ -4,6 +4,10 @@
   
   #tag-cloud
   
+    - if @tags.empty?
+      %span No tags.
+  
     - @tags.each do |tag|
       
-      %a{:class => tag_popularity_class(tag), :href => "/tags/#{tag.name}"}= tag.name
+      %span{:class => tag_popularity_class(tag)}
+        =link_to(tag.name, "/tags/#{tag.name}")

@@ -34,12 +34,40 @@ module IssueHelper
       "/issues/#{issue.id}/responses/new"
     end
 
+    def mark_as_answer_path(response)
+      "/issues/#{response.issue.id}/responses/#{response.id}/answer"
+    end
+
     def edit_response_path(response)
       "/issues/#{response.issue.id}/responses/#{response.id}/edit"
     end
 
     def delete_response_path(response)
       "/issues/#{response.issue.id}/responses/#{response.id}/delete"
+    end
+    
+    def ensure_answer_class(response)
+      "answer" unless response != response.issue.answer
+    end
+    
+    def issue_status(issue)
+    
+      unless issue.answer.nil?
+        "Answered"
+      else
+        "Open"
+      end 
+            
+    end
+    
+    def response_status(response)
+    
+      if response.issue.answer == response
+        "answered"
+      else
+        "responded"
+      end
+    
     end
     
     def response_count(issue)

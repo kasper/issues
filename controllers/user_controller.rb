@@ -86,6 +86,7 @@ class UserController < Base
   
     @user = User.first(:username => params[:username])
     pass unless @user
+    @issues = @user.issues(:order => [ :opened_on.desc ])
     
     haml :user
   
@@ -152,12 +153,5 @@ class UserController < Base
     end
   
   end
-  
-  ## User's issues
-  
-  get '/users/:username/issues' do
-  
-  
-  end  
 
 end

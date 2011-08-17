@@ -34,20 +34,22 @@
   
     - @responses.each do |response|
   
-      .response{:id => "response_#{response.id}"}
+      .response{:id => "response_#{response.id}", :class => ensure_answer_class(response)}
       
         - unless @edit_response && response.id == @edit_response.id
         
           .edit
           
             %ul
+              - if edit_allowed?(@issue) && response != @issue.answer
+                %li= link_to("Mark as answer", mark_as_answer_path(response))
               - if edit_allowed?(response)
                 %li= link_to('Edit', edit_response_path(response))
               - if delete_allowed?(response)
                 %li= link_to('Remove', delete_response_path(response))
           
           %p.response-content= markdown(response.content)
-          %p.info responsed by #{link_to(response.user.username, user_path(response.user))} on #{natural_date(response.responded_on)}
+          %p.info #{response_status(response)} by #{link_to(response.user.username, user_path(response.user))} on #{natural_date(response.responded_on)}
          
         - else
         

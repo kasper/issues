@@ -14,6 +14,8 @@ class Issue
   has n, :taggings, :constraint => :destroy
   has n, :tags, :through => :taggings
   
+  belongs_to :answer, :model => Response, :required => false
+  
   def edit_allowed?
     true
   end

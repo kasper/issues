@@ -1,11 +1,11 @@
 class IssueController < Base
 
   def edit_allowed?(model)
-    model.edit_allowed? && model.user == authorised_user
+    (model.edit_allowed? && model.user == authorised_user) || (authorised? && authorised_user.admin)
   end
 
   def delete_allowed?(model)
-    model.delete_allowed? && model.user == authorised_user
+    (model.delete_allowed? && model.user == authorised_user) || (authorised? && authorised_user.admin)
   end
   
   ## All public issues
@@ -14,7 +14,7 @@ class IssueController < Base
   
     content_for :title, 'What is your issue?'
     @issues = Issue.all(:order => [ :opened_on.desc ])
-    haml :issues
+    haml :index
     
   end
   
@@ -24,7 +24,7 @@ class IssueController < Base
   
     content_for :title, 'My issues'
     @issues = authorised_user.issues(:order => [ :opened_on.desc ])
-    haml :issues
+    haml :index
   
   end
   
@@ -192,6 +192,27 @@ class IssueController < Base
     
     redirect to(issue_path(issue))
     
+  end
+  
+  ## Mark response as answer
+  
+  get '/issues/:issue_id/responses/:response_id/answer', :auth => :user do 
+  
+    issue = Issue.get(params[:issue_id])
+    pass unless issue
+    
+    response = Response.get(params[:response_id])
+    pass unless response
+    
+    if edit_allowed?(issue)
+    
+      issue.answer = response
+      issue.save
+    
+    end
+    
+    redirect to(issue_path(issue))
+  
   end
   
   ## Edit response

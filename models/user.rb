@@ -14,6 +14,8 @@ class User
   property :www, String, :format => :url
   property :description, Text
   
+  property :admin, Boolean, :default => false 
+  
   has n, :issues
   has n, :responses
   

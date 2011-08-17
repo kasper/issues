@@ -243,12 +243,37 @@ span.info {
   color: #4e4e4e;
 }
 
+#user-issues {
+  margin: 20px 0;
+  padding: 5px;
+}
+
+#user-issues ul {
+  margin: 20px 0;
+}
+
+#issues li div.status {
+  display: inline-block;
+  width: 60px;
+  margin-right: 10px;
+  padding: 0 5px;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 3px;
+  font-size: 13px;
+  text-align: right;
+}
+
 /* Issue */
 
 #issue {
   padding: 15px;
   border: 2px solid rgba(0,0,0,0.15);
   border-radius: 3px;
+}
+
+.response.answer {
+  border: 2px solid rgba(0,100,0,0.15);
+  font-size: inherit;
 }
 
 div.edit {

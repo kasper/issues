@@ -11,27 +11,33 @@
 
   %h1= @user.username
   
-  - if @user.name
+  - if @user.name && !@user.name.empty?
     %p.info= @user.name
   
   %p
     %span.strong Registered since
     =natural_date(@user.registered_on)
   
-  - if @user.location
+  - if @user.location && !@user.location.empty?
   
     %p
       %span.strong Location 
       = @user.location
   
-  - unless @user.www.empty?
+  - if @user.www && !@user.www.empty?
   
     %p 
       %span.strong WWW
-      = markdown(@user.www)
+      =markdown(@user.www)
     
-  - if @user.description
+  - if @user.description && !@user.description.empty?
   
     %p
       %span.strong Description
-      = markdown(@user.description)
+      =markdown(@user.description)
+
+#user-issues
+
+  %h1 #{@user.username}'s Issues      
+      
+  = haml :issues
