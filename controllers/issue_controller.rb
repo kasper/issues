@@ -14,7 +14,7 @@ class IssueController < Base
   
     content_for :title, 'What is your issue?'
     @issues = Issue.all(:order => [ :opened_on.desc ])
-    haml :index
+    haml :issues
     
   end
   
@@ -24,7 +24,7 @@ class IssueController < Base
   
     content_for :title, 'My issues'
     @issues = authorised_user.issues(:order => [ :opened_on.desc ])
-    haml :index
+    haml :issues
   
   end
   
@@ -207,6 +207,27 @@ class IssueController < Base
     if edit_allowed?(issue)
     
       issue.answer = response
+      issue.save
+    
+    end
+    
+    redirect to(issue_path(issue))
+  
+  end
+  
+  ## Unmark response as answer
+  
+  get '/issues/:issue_id/responses/:response_id/answer/delete', :auth => :user do 
+  
+    issue = Issue.get(params[:issue_id])
+    pass unless issue
+    
+    response = Response.get(params[:response_id])
+    pass unless response
+    
+    if edit_allowed?(issue)
+    
+      issue.answer = nil
       issue.save
     
     end

@@ -41,8 +41,11 @@
           .edit
           
             %ul
-              - if edit_allowed?(@issue) && response != @issue.answer
-                %li= link_to("Mark as answer", mark_as_answer_path(response))
+              - if edit_allowed?(@issue)
+                - if response != @issue.answer
+                  %li= link_to("Mark as answer", mark_as_answer_path(response))
+                - else
+                  %li= link_to("Unmark as answer", unmark_as_answer_path(response))
               - if edit_allowed?(response)
                 %li= link_to('Edit', edit_response_path(response))
               - if delete_allowed?(response)
@@ -73,6 +76,8 @@
     %p #{link_to('Sign in', sign_in_path(request.path))} to respond.
     
 #side-container
+
+  %div.status= issue_status(@issue)
 
   - if @issue.tags
   

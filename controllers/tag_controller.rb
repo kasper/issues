@@ -16,8 +16,13 @@ class TagController < Base
   ## Tag
   
   get '/tags/:name' do
+  
+    tag = Tag.first(:name => params[:name])
+    pass unless tag
     
-    @issues = Tag.first(:name => params[:name]).issues
+    @issues = tag.issues
+    
+    content_for :title, tag.name
     haml :issues
     
   end

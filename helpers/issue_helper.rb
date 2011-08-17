@@ -37,6 +37,10 @@ module IssueHelper
     def mark_as_answer_path(response)
       "/issues/#{response.issue.id}/responses/#{response.id}/answer"
     end
+    
+    def unmark_as_answer_path(response)
+      "/issues/#{response.issue.id}/responses/#{response.id}/answer/delete"
+    end
 
     def edit_response_path(response)
       "/issues/#{response.issue.id}/responses/#{response.id}/edit"
