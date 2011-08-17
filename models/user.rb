@@ -23,9 +23,12 @@ class User
   before :update, :hash_password
   
   private
+  
   def hash_password()
     self.password = Digest::SHA1.hexdigest(self.password)
   end
+	
+	public
 	
   def self.sign_up(username, email, password)
 
@@ -36,6 +39,10 @@ class User
       :registered_on => DateTime.now
     )
     
+  end
+  
+  def password_correct(password)
+    self.password == Digest::SHA1.hexdigest(password)
   end
 
 end

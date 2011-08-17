@@ -2,11 +2,17 @@
   
   %ul#issues
   
+    - if @issues.empty?
+      %span No issues.
+  
     - @issues.each do |issue|
     
       %li#issue{:id => issue.id}
         %span= link_to(issue.title, issue_path(issue))
-        %span by #{issue.user.username}
+        %span by #{link_to(issue.user.username, user_path(issue.user))}
         %span= time_ago_in_words(issue.opened_on)
+        
+        - unless issue.responses.empty?
+          %span.info (#{response_count(issue)}, latest response #{time_ago_in_words(issue.responses.last.responded_on)})
           
 #side-container

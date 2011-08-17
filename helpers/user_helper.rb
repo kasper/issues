@@ -13,6 +13,18 @@ module UserHelper
     def logout_path
       '/logout'
     end
+    
+    def user_path(user)
+      "/users/#{user.username}"
+    end
+    
+    def user_issues(user)
+      "/users/#{user.username}/issues"
+    end
+    
+    def edit_user_path(user)
+      "/users/#{user.username}/edit"
+    end
   
   end
 

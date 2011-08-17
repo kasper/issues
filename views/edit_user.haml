@@ -1,0 +1,46 @@
+- content_for :title, 'Edit profile'
+
+- user = json_from_flash(flash[:user])
+- errors = json_from_flash(flash[:errors])
+
+%form#edit-user{:action => edit_user_path(@user), :method => "post"}
+
+  %label Name
+  %input{:type => "text", :name => "name", :value => (user["name"] ? user["name"] : @user.name)}
+  
+  %label Location
+  %input{:type => "text", :name => "location", :value => (user["location"] ? user["location"] : @user.location)}
+  
+  %label{:class => ensure_error_class(user["email"])} Email
+  %input{:type => "text", :name => "email", :value => (user["email"] ? user["email"] : @user.email)}
+  
+  - # Show email error (except blank error)
+  - if flash[:errors] && !user["email"].empty?
+    %p.error= errors["email"]
+  
+  %label WWW
+  %input{:type => "text", :name => "www", :value => (user["www"] ? user["www"] : @user.www)}
+  
+  - # Show www error (except blank error)
+  - if flash[:errors] && !user["www"].empty?
+    %p.error= errors["www"]
+  
+  %label Description
+  %textarea{:name => "description"}= (user["description"] ? user["description"] : @user.description)
+  
+  %label New password
+  %input{:type => "password", :name => "new_password"}
+  
+  - # Show password error (except blank error)
+  - if flash[:errors] && !user["password"].empty?
+    %p.error= errors["password"]
+  
+  %label Current password
+  %input{:type => "password", :name => "current_password"}
+  
+  - # Show wrong password error
+  -if flash[:wrong_password]
+    %p.error= flash[:wrong_password]
+  
+  %input.styled-button{:type => "submit", :value => "Save"}
+  %a.styled-button.close{:href => user_path(@user)} Close  

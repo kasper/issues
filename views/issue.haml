@@ -17,7 +17,7 @@
             %li= link_to('Remove', delete_issue_path(@issue))
     
       %h1= @issue.title
-      %p.info opened by #{@issue.user.username} on #{natural_date(@issue.opened_on)}
+      %p.info opened by #{link_to(@issue.user.username, user_path(@issue.user))} on #{natural_date(@issue.opened_on)}
       %p.issue-content= markdown(@issue.content)
      
     - else
@@ -47,7 +47,7 @@
                 %li= link_to('Remove', delete_response_path(response))
           
           %p.response-content= markdown(response.content)
-          %p.info responsed by #{response.user.username} on #{natural_date(response.responded_on)}
+          %p.info responsed by #{link_to(response.user.username, user_path(response.user))} on #{natural_date(response.responded_on)}
          
         - else
         

@@ -47,8 +47,12 @@ module AppHelper
     end
     
     def markdown(text)
+    
+      if text.nil?
+        return
+      end
      
-      options = [:hard_wrap, :autolink]  
+      options = [:hard_wrap, :autolink, :no_intraemphasis]  
       Redcarpet.new(text, *options).to_html
       
     end  

@@ -175,7 +175,7 @@ input.styled-button:hover {
   background-color: #439340;
 }
 
-#edit-issue input.styled-button, #add-tag input.styled-button {
+#edit-issue input.styled-button, #add-tag input.styled-button, #edit-user input.styled-button {
   display: inline;
 }
 
@@ -209,6 +209,16 @@ input.styled-button:hover {
   border: 1px solid rgba(0,0,0,0.15);
 }
 
+#edit-user input[type="text"], #edit-user input[type="password"] {
+  width: 150px;
+}
+
+#edit-user textarea {
+  width: 300px;
+  height: 100px;
+  padding: 5px;
+}
+
 #add-tag {
   margin: 10px 0;
 }
@@ -224,6 +234,13 @@ input.styled-button:hover {
 
 #issues li {
   padding: 5px 0;
+}
+
+span.info {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: normal;
+  color: #4e4e4e;
 }
 
 /* Issue */
@@ -306,4 +323,21 @@ p.issue-content {
 
 .vast-popularity {
   font-size: 54px;
+}
+
+/* Profile */
+
+#profile {
+  padding: 15px;
+  border: 2px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+
+#profile p {
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+span.strong {
+  font-weight: bold;
 }

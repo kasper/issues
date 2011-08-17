@@ -91,6 +91,7 @@ class IssueController < Base
 
     @issue = Issue.get(params[:id])
     pass unless @issue
+    pass unless edit_allowed?(@issue)
     
     @responses = @issue.responses
     @edit_issue = true
@@ -139,10 +140,11 @@ class IssueController < Base
     belonging_to_issue = Issue.get(params[:issue_id])
     pass unless belonging_to_issue
     
-    tag_name = Sanitize.clean(params[:tag_name])
-    
     if edit_allowed?(belonging_to_issue)
+    
+      tag_name = Sanitize.clean(params[:tag_name])
       belonging_to_issue.tag([tag_name])
+      
     end
     
     redirect to(issue_path(belonging_to_issue))
@@ -202,6 +204,7 @@ class IssueController < Base
     @responses = @issue.responses
     @edit_response = Response.get(params[:response_id])
     pass unless @edit_response
+    pass unless edit_allowed?(@edit_response)
     
     haml :issue
   

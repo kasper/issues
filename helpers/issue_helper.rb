@@ -41,6 +41,16 @@ module IssueHelper
     def delete_response_path(response)
       "/issues/#{response.issue.id}/responses/#{response.id}/delete"
     end
+    
+    def response_count(issue)
+    
+      if issue.responses.count > 1
+        "#{issue.responses.count} responses"
+      else
+        "#{issue.responses.count} response"
+      end
+      
+    end
   
   end
 
