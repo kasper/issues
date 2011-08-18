@@ -12,7 +12,7 @@ class User
   property :name, String
   property :location, String
   property :www, String, :format => :url
-  property :description, Text
+  property :description, Text, :length => 1..200
   
   property :admin, Boolean, :default => false 
   

@@ -3,8 +3,8 @@ class Issue
   include DataMapper::Resource
   
   property :id, Serial
-  property :title, String, :required => true
-  property :content, Text, :required => true
+  property :title, String, :required => true, :length => 1..100
+  property :content, Text, :required => true, :length => 1..2000
   property :opened_on, DateTime, :required => true 
   
   belongs_to :user

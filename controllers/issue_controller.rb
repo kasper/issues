@@ -56,8 +56,8 @@ class IssueController < Base
     else
     
       flash[:new_issue] = new_issue.to_json
+      flash[:errors] = new_issue.errors.to_json 
       flash[:issue_tags] = issue_tags
-      flash[:errors] = new_issue.errors.to_json
       redirect to(new_issue_path)
       
     end
@@ -108,7 +108,7 @@ class IssueController < Base
     
       issue_title = Sanitize.clean(params[:issue_title])
       issue_content = Sanitize.clean(params[:issue_content])
-    
+      
       # Fail silently
       issue_to_edit.update(:title => issue_title, :content => issue_content)
       redirect to(issue_path(Issue.get(params[:id])))

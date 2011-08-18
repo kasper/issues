@@ -25,8 +25,8 @@
       - # Edit issue
     
       %form#edit-issue{:action => edit_issue_path(@issue), :method => "post"}
-        %input{:type => "text", :name => "issue_title", :value => @issue.title}
-        %textarea{:name => "issue_content"}= @issue.content
+        %input{:type => "text", :name => "issue_title", :onKeyUp => "limit(this.form.issue_title, 100);", :value => @issue.title}
+        %textarea{:name => "issue_content", :onKeyUp => "limit(this.form.issue_content, 2000);"}= @issue.content
         %input.styled-button{:type => "submit", :value => "Save"}
         %a.styled-button.close{:href => issue_path(@issue)} Close
   
@@ -59,7 +59,7 @@
           - # Edit response
         
           %form#edit-issue{:action => edit_response_path(response), :method => "post"}
-            %textarea{:name => "response_content"}= response.content
+            %textarea{:name => "response_content", :onKeyUp => "limit(this.form.response_content, 2000);"}= response.content
             %input.styled-button{:type => "submit", :value => "Save"}
             %a.styled-button.close{:href => issue_path(@issue)} Close       
   
@@ -68,7 +68,7 @@
     %form#new-response{:action => new_response_path(@issue), :method => "post"}
     
       %label{:class => ensure_error_class(new_response["content"])} Respond
-      %textarea{:name => "response_content"}= new_response["content"]
+      %textarea{:name => "response_content", :onKeyUp => "limit(this.form.response_content, 2000);"}= new_response["content"]
       %input.styled-button{:type => "submit", :value => "Submit new response"}
       
   - else

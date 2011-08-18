@@ -3,7 +3,7 @@ class Response
   include DataMapper::Resource
 
   property :id, Serial
-  property :content, Text, :required => true
+  property :content, Text, :required => true, :length => 1..2000
   property :responded_on, DateTime, :required => true
   
   belongs_to :user
