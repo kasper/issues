@@ -185,6 +185,21 @@ input.styled-button:hover {
 
 /* Forms */
 
+#search {
+  float: right;
+}
+
+#search label {
+  display: inline;
+  margin-right: 10px;
+}
+
+#search input {
+  display: inline;
+  border: 1px solid rgba(0,0,0,0.3);
+  padding: 4px;
+}
+
 #signin input[type="text"], #signin input[type="password"],
 #signup input[type="text"], #signup input[type="password"] {
   width: 150px;
@@ -228,6 +243,16 @@ input.styled-button:hover {
   width: 80px;
   padding: 5px;
   border: 1px solid rgba(0,0,0,0.3);
+}
+
+/* Search */
+
+h1.subheading {
+  margin: 20px 0;
+}
+
+#users a {
+  margin-right: 10px;
 }
 
 /* Issues */

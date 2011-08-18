@@ -5,8 +5,7 @@ class Issue
   property :id, Serial
   property :title, String, :required => true
   property :content, Text, :required => true
-  property :opened_on, DateTime, :required => true
-  property :private_issue, Boolean, :default => false  
+  property :opened_on, DateTime, :required => true 
   
   belongs_to :user
   
@@ -24,13 +23,12 @@ class Issue
     responses.count == 0
   end
   
-  def self.new_issue(belonging_to_user, title, content, private_issue)
+  def self.new_issue(belonging_to_user, title, content)
   
     new_issue = Issue.create(
       :user => belonging_to_user,
       :title => title,
       :content => content,
-      :private_issue => private_issue,
       :opened_on => DateTime.now
     )
     

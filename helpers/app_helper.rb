@@ -3,7 +3,11 @@ module AppHelper
   module Helpers
   
     def root_path
-     '/'
+      '/'
+    end
+    
+    def search_path
+      '/search'
     end
   
     def timestamp_for_file(path_to_file)

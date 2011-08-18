@@ -1,0 +1,15 @@
+- content_for :title, 'Search results'
+
+%h1.subheading Issues
+
+= haml :issues_list
+
+- unless @users.empty?
+
+  %h1.subheading Users
+
+  #users
+
+    - @users.each do |user|
+      
+      = link_to(user.username, user_path(user))

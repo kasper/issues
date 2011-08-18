@@ -13,7 +13,7 @@ class IssueController < Base
   get '/' do
   
     content_for :title, 'What is your issue?'
-    @issues = Issue.all(:private_issue => false, :order => [ :opened_on.desc ])
+    @issues = Issue.all(:order => [ :opened_on.desc ])
     haml :issues
     
   end
@@ -39,19 +39,11 @@ class IssueController < Base
     issue_title = Sanitize.clean(params[:issue_title])
     issue_content = Sanitize.clean(params[:issue_content])
     issue_tags = Sanitize.clean(params[:issue_tags])
-    issue_private = params[:issue_private]
-    
-    # Private issue?
-    if issue_private == "on"
-      issue_private = true
-    else
-      issue_private = false
-    end
     
     # Tags separated with commas
     tags_as_array = issue_tags.split(/ *, */)
     
-    new_issue = Issue.new_issue(authorised_user, issue_title, issue_content, issue_private)
+    new_issue = Issue.new_issue(authorised_user, issue_title, issue_content)
     
     # Was the issue saved?
     if new_issue.saved?
@@ -65,7 +57,6 @@ class IssueController < Base
     
       flash[:new_issue] = new_issue.to_json
       flash[:issue_tags] = issue_tags
-      flash[:issue_private] = issue_private
       flash[:errors] = new_issue.errors.to_json
       redirect to(new_issue_path)
       

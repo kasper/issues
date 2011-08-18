@@ -15,15 +15,19 @@
             %li= link_to('Sign up' , sign_up_path)
           - else
             %li= link_to(authorised_user.username, user_path(authorised_user))
-            %li= link_to('Logout' , logout_path) 
+            %li= link_to('Logout' , logout_path)
         
       #main-nav
+      
+        %form#search{:action => search_path, :method => "post"}
+          %label Search
+          %input{:type => "text", :name => "search_value"} 
       
         %ul
           %li.styled-button= link_to('Issues' , root_path)
           %li.styled-button= link_to('New issue' , new_issue_path)
           - if authorised?
             %li.styled-button= link_to("My issues (#{authorised_user.issues.count})" , authorised_user_issues_path)
-          %li.styled-button= link_to('Tags' , tags_path)
-        
+          %li.styled-button= link_to('Tags' , tags_path) 
+      
       #container= yield
