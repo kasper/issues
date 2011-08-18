@@ -261,6 +261,15 @@ h1.subheading {
   padding: 5px 0;
 }
 
+#issues div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#issues div.info {
+  width: 714px;
+}
+
 span.info {
   margin-top: 5px;
   font-size: 13px;
