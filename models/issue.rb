@@ -38,6 +38,8 @@ class Issue
   
     tags_as_array.each do |tag_string|
     
+      tag_string.downcase!
+    
       # Convert spaces into dashes
       tag_string.gsub!(' ', '-')
         
