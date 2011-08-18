@@ -27,10 +27,11 @@ module AppHelper
     end
     
     def natural_date(datetime)
+      date.strftime("%B %d, %Y") 
+    end
     
-      date = Date.parse(datetime.to_s)
-      date.strftime("%B %d, %Y")
-      
+    def natural_date_and_time(datetime)
+      datetime.strftime("%B %d, %Y (%I.%M %p)")
     end
     
     def urlify(s)
