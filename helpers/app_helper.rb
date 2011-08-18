@@ -27,7 +27,7 @@ module AppHelper
     end
     
     def natural_date(datetime)
-      date.strftime("%B %d, %Y") 
+      datetime.strftime("%B %d, %Y") 
     end
     
     def natural_date_and_time(datetime)
