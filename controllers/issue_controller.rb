@@ -190,7 +190,7 @@ class IssueController < Base
       
     end
     
-    redirect to(issue_path(issue))
+    redirect to(issue_path_with_response(issue, new_response))
     
   end
   
@@ -211,7 +211,7 @@ class IssueController < Base
     
     end
     
-    redirect to(issue_path(issue))
+    redirect to(issue_path_with_response(issue, response))
   
   end
   
@@ -232,7 +232,7 @@ class IssueController < Base
     
     end
     
-    redirect to(issue_path(issue))
+    redirect to(issue_path_with_response(issue, response))
   
   end
   
@@ -265,7 +265,7 @@ class IssueController < Base
     
       response_content =  Sanitize.clean(params[:response_content])
       response_to_edit.update(:content => response_content)
-      redirect to(issue_path(belonging_to_issue))
+      redirect to(issue_path_with_response(belonging_to_issue, response_to_edit))
       
     end
     

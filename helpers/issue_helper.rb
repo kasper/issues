@@ -13,6 +13,10 @@ module IssueHelper
     def issue_path(issue)
       "/issues/#{issue.id}/title/#{urlify(issue.title)}"
     end
+    
+    def issue_path_with_response(issue, response)
+      "/issues/#{issue.id}/title/#{urlify(issue.title)}#response_#{response.id}"
+    end
   
     def edit_issue_path(issue)
       "/issues/#{issue.id}/edit"
@@ -43,7 +47,7 @@ module IssueHelper
     end
 
     def edit_response_path(response)
-      "/issues/#{response.issue.id}/responses/#{response.id}/edit"
+      "/issues/#{response.issue.id}/responses/#{response.id}/edit#response_#{response.id}"
     end
 
     def delete_response_path(response)
