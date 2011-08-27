@@ -7,7 +7,7 @@ Required bundler (http://gembundler.com/) and Ruby 1.8.7
 
 Run:
 
-1) rackup
+1) "rackup"
 2) http://localhost:9292/
 3) Have fun!
 
