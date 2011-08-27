@@ -1,1 +1,16 @@
-...
+Install:
+
+Required bundler (http://gembundler.com/) and Ruby 1.8.7
+
+1) "bundle install"
+2) You should be ready to go!
+
+Run:
+
+1) rackup
+2) http://localhost:9292/
+3) Have fun!
+
+Close server:
+
+Ctrl + C
